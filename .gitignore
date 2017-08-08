@@ -1,0 +1,9 @@
+# Ignore prototypes and automatically generated build files.
+prototype
+build
+Makefile
+
+# Ignore extraneous configuration files.
+*.sublime-*
+*.pro.user*
+.qmake*
