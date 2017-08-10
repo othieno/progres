@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-greaterThan(QT_MAJOR_VERSION, 4):greaterThan(QT_MINOR_VERSION, 4) {
+greaterThan(QT_MAJOR_VERSION, 4):greaterThan(QT_MINOR_VERSION, 7) {
     APPLICATION_NAME = "PROGRES"
     APPLICATION_VERSION = 0.0.0
     APPLICATION_REPOSITORY = "https://github.com/othieno/progres"
@@ -50,8 +50,8 @@ greaterThan(QT_MAJOR_VERSION, 4):greaterThan(QT_MINOR_VERSION, 4) {
 
 } else {
     error(\
-        "Building PROGRES requires Qt 5.5."\
-        "Make sure your version of qmake is using the Qt 5.5 libraries, or later." \
+        "Building PROGRES requires Qt 5.8"\
+        "Make sure your version of qmake is using the Qt 5.8 libraries, or later." \
         "You can find out which version is currently being used by running 'qmake --version'."\
     )
 }
