@@ -41,11 +41,13 @@ greaterThan(QT_MAJOR_VERSION, 4):greaterThan(QT_MINOR_VERSION, 7) {
 
     HEADERS += \
         src/system/Application.hh \
-        src/system/Error.hh
+        src/system/Error.hh \
+        src/ui/GraphicalUserInterface.hh
 
     SOURCES += \
         src/system/Application.cc \
         src/system/Error.cc \
+        src/ui/GraphicalUserInterface.cc \
         src/progres.cc
 
 } else {

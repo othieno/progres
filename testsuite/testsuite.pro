@@ -42,6 +42,7 @@ RCC_DIR = ../$${RCC_DIR}
 UI_DIR = ../$${UI_DIR}
 
 HEADERS += \
+    Test.hh \
     testsuite.hh
 
 SOURCES += \
