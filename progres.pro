@@ -29,7 +29,7 @@ QMAKE_EXTRA_TARGETS += documentation_target
 
 # Add Makefile targets to help build and run the testsuite.
 TESTSUITE_DIR = "$$PWD/testsuite"
-TESTSUITE_BIN = "$$PWD/build/testsuite"
+TESTSUITE_BIN = "$$PWD/build/progres-testsuite"
 testsuite_target.target = tests
 testsuite_target.commands = @qmake "$$TESTSUITE_DIR" -o "$$TESTSUITE_DIR/Makefile" && make -C "$$TESTSUITE_DIR"
 run_testsuite_target.target = run-tests

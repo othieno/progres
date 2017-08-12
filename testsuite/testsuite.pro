@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-include("../progres.pri")
+include(../progres.pri)
 
 TEMPLATE = app
 TARGET = progres-testsuite
@@ -42,7 +42,9 @@ RCC_DIR = ../$${RCC_DIR}
 UI_DIR = ../$${UI_DIR}
 
 HEADERS += \
-	testsuite.hh
+    testsuite.hh
 
 SOURCES += \
-	testsuite.cc
+    testsuite.cc
+
+include(../vendor/fluid/fluid.pri)
