@@ -50,6 +50,7 @@ greaterThan(QT_MAJOR_VERSION, 4):greaterThan(QT_MINOR_VERSION, 7) {
         src/ui/GraphicalUserInterface.cc \
         src/progres.cc
 
+    include(src/qml/qml.pri)
 } else {
     error(\
         "Building PROGRES requires Qt 5.8"\
