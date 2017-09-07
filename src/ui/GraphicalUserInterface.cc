@@ -16,8 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "GraphicalUserInterface.hh"
-#include "iconsimageprovider.h"
-#include "iconthemeimageprovider.h"
+#include <QGuiApplication>
+#include <QQuickStyle>
+#include <iconsimageprovider.h>
+#include <iconthemeimageprovider.h>
 
 using progres::GraphicalUserInterface;
 using progres::Error;
@@ -32,11 +34,12 @@ GraphicalUserInterface::~GraphicalUserInterface() {}
 
 Error
 GraphicalUserInterface::initialize() {
-    qmlApplicationEngine_.addImportPath(QLatin1String("qrc:/"));
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QQuickStyle::setStyle("Material");
 
+    qmlApplicationEngine_.addImportPath(QLatin1String("qrc:/"));
     qmlApplicationEngine_.addImageProvider(QLatin1String("fluidicons"), new IconsImageProvider());
     qmlApplicationEngine_.addImageProvider(QLatin1String("fluidicontheme"), new IconThemeImageProvider());
-
     qmlApplicationEngine_.load(QUrl("qrc:/view/main.qml"));
 
     return Error::None;

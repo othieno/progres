@@ -17,16 +17,51 @@
  */
 import QtQuick 2.6
 import QtQuick.Window 2.2
-import QtQuick.Controls 2.0
-import QtQuick.Controls.Material 2.0
-import QtQuick.Controls.Universal 2.0
-import QtQuick.Layouts 1.3
+import QtQuick.Controls.Material 2.2
 import Fluid.Controls 1.0
-
+import VisualScript 1.0
 
 ApplicationWindow {
+    Material.theme: Material.Light
+    Material.primary: Material.color(Material.Blue, Material.Shade500)
+    Material.background: Material.color(Material.Grey, Material.Shade300)
+    Material.accent: Material.color(Material.LightBlue, Material.ShadeA700)
+
     id: applicationWindow
-    title: "Procedural Graphics Editor Suite"
+    title: "%1Procedural Graphics Editor Suite".arg(initialPage.title ? initialPage.title + " - " : "")
     visible: true
     visibility: Window.Maximized
+    appBar.visible: false
+    initialPage: Page {
+        title: workspace.visible && workspace.name ? workspace.name : ""
+        actions: [
+            Action {
+                text: qsTr("Application Settings")
+                iconName: "action/settings"
+                toolTip: qsTr("Configure the application's settings")
+                onTriggered: pageStack.push("qrc:/view/settings/main.qml")
+                hoverAnimation: true
+            }
+        ]
+
+        Quickstart {
+            id: quickstart
+            anchors.fill: parent
+            visible: true
+            onStarted: {
+                visible = false
+                appBar.visible = true
+                workspace.parent.openWave(0, 0)
+            }
+        }
+
+        Wave {
+            anchors.fill: parent
+            onFinished: workspace.initialize()
+            VisualScriptWorkspace {
+                id: workspace
+                visible: !quickstart.visible
+            }
+        }
+    }
 }

@@ -15,6 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 greaterThan(QT_MAJOR_VERSION, 4):greaterThan(QT_MINOR_VERSION, 7) {
+    include(src/qml/qml.pri)
+
     APPLICATION_NAME = "PROGRES"
     APPLICATION_VERSION = 0.0.0
     APPLICATION_REPOSITORY = "https://github.com/othieno/progres"
@@ -23,7 +25,7 @@ greaterThan(QT_MAJOR_VERSION, 4):greaterThan(QT_MINOR_VERSION, 7) {
         APPLICATION_VERSION=\\\"$$APPLICATION_VERSION\\\" \
         APPLICATION_REPOSITORY=\\\"$$APPLICATION_REPOSITORY\\\"
 
-    QT += qml quick
+    QT += qml quick quickcontrols2
     CONFIG += c++14
     QMAKE_CXXFLAGS += -Wall -Wextra -ansi -pedantic-errors -Werror
 
@@ -49,8 +51,6 @@ greaterThan(QT_MAJOR_VERSION, 4):greaterThan(QT_MINOR_VERSION, 7) {
         src/system/Error.cc \
         src/ui/GraphicalUserInterface.cc \
         src/progres.cc
-
-    include(src/qml/qml.pri)
 } else {
     error(\
         "Building PROGRES requires Qt 5.8"\
