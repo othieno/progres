@@ -35,8 +35,12 @@ public:
     void setName(const QString& name);
 signals:
     void nameChanged(const QString& newName);
+protected:
+    void mousePressEvent(QMouseEvent* const event) override;
+    void mouseMoveEvent(QMouseEvent* const event) override;
 private:
     QString name_;
+    QPointF oldPosition_;
 };
 } // namespace visualscript
 
