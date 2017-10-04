@@ -20,12 +20,24 @@ import QtQuick.Controls 2.2
 import QtQuick.Controls.Material 2.2
 
 Rectangle {
+    id: workspace
+
     /**
-     * Private properties.
+     * The component's private scope.
      */
     QtObject {
         id: _
         property string name
+
+        /**
+         * Creates a VisualScriptNode with the specified source.
+         */
+        function createVisualScriptNode(source) {
+            return Qt.createQmlObject(
+                'import VisualScript 1.0; VisualScriptNode {source: "%1"}'.arg(source),
+                workspace
+            )
+        }
     }
 
     readonly property alias name: _.name
@@ -46,6 +58,13 @@ Rectangle {
     DropArea {
         anchors.fill: parent
         onDropped: function(e) {
+            if (e.hasUrls) {
+                var node = _.createVisualScriptNode(e.urls[0])
+                if (node != null) {
+                    node.x = e.x - (node.width * 0.5)
+                    node.y = e.y - (node.height * 0.5)
+                }
+            }
         }
     }
 }
