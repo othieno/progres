@@ -27,6 +27,21 @@ QQuickItem(parent) {
 
 
 const QString&
+VisualScriptNode::getSource() const {
+    return source_;
+}
+
+
+void
+VisualScriptNode::setSource(const QString& source) {
+    if (source_ != source) {
+        source_ = source;
+        emit sourceChanged(source_);
+    }
+}
+
+
+const QString&
 VisualScriptNode::getName() const {
     return name_;
 }
