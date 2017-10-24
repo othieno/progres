@@ -18,8 +18,6 @@
 #include "GraphicalUserInterface.hh"
 #include <QGuiApplication>
 #include <QQuickStyle>
-#include <iconsimageprovider.h>
-#include <iconthemeimageprovider.h>
 
 using progres::GraphicalUserInterface;
 using progres::Error;
@@ -38,8 +36,6 @@ GraphicalUserInterface::initialize() {
     QQuickStyle::setStyle("Material");
 
     qmlApplicationEngine_.addImportPath(QLatin1String("qrc:/"));
-    qmlApplicationEngine_.addImageProvider(QLatin1String("fluidicons"), new IconsImageProvider());
-    qmlApplicationEngine_.addImageProvider(QLatin1String("fluidicontheme"), new IconThemeImageProvider());
     qmlApplicationEngine_.load(QUrl("qrc:/view/main.qml"));
 
     return Error::None;

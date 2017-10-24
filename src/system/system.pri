@@ -16,11 +16,9 @@
 INCLUDEPATH += $$PWD
 
 HEADERS += \
-    $$PWD/VisualScriptNode.hh \
-    $$PWD/VisualScriptPlugin.hh
+    $$PWD/Application.hh \
+    $$PWD/Error.hh
 
 SOURCES += \
-    $$PWD/VisualScriptNode.cc \
-    $$PWD/VisualScriptPlugin.cc
-
-RESOURCES += $$PWD/visualscript.qrc
+    $$PWD/Application.cc \
+    $$PWD/Error.cc

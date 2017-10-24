@@ -13,13 +13,11 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+TEMPLATE = subdirs
+SUBDIRS = src testsuite vendor
 
-include(progres.pri)
-include(vendor/fluid/fluid.pri)
-
-TEMPLATE = app
-TARGET = progres
-RESOURCES += progres.qrc
+src.depends = vendor
+testsuite.depends = src
 
 # Add a Makefile target to help build the documentation.
 DOXYFILE = "$$PWD/progres.doxyfile"

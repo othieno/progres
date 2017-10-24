@@ -1,8 +1,0 @@
-<!DOCTYPE RCC>
-<RCC version="1.0">
-    <qresource prefix="/view">
-        <file alias="main.qml">src/ui/view/main.qml</file>
-        <file alias="Quickstart.qml">src/ui/view/Quickstart.qml</file>
-        <file alias="/settings/main.qml">src/ui/view/settings/main.qml</file>
-    </qresource>
-</RCC>

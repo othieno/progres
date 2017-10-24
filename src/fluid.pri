@@ -13,14 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-INCLUDEPATH += $$PWD
-
-HEADERS += \
-    $$PWD/VisualScriptNode.hh \
-    $$PWD/VisualScriptPlugin.hh
-
-SOURCES += \
-    $$PWD/VisualScriptNode.cc \
-    $$PWD/VisualScriptPlugin.cc
-
-RESOURCES += $$PWD/visualscript.qrc
+fluid.path = $$DESTDIR
+fluid.files = $$VENDORDIR/fluid/qml/Fluid
+COPIES += fluid

@@ -13,33 +13,11 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-include(../progres.pri)
+include(../src/src.pri)
 
 TEMPLATE = app
 TARGET = progres-testsuite
 QT += testlib
-
-# Remove progres.cc or this will create an entry point conflict: one main
-# function in progres.cc and the other in testsuite.cc.
-SOURCES -= src/progres.cc
-
-# Prefix each path with "../".
-paths       = $$INCLUDEPATH
-headers     = $$HEADERS
-sources     = $$SOURCES
-INCLUDEPATH =
-HEADERS     =
-SOURCES     =
-for (path, paths):     INCLUDEPATH += ../$$path
-for (header, headers): HEADERS += ../$$header
-for (source, sources): SOURCES += ../$$source
-INCLUDEPATH += .
-DESTDIR = ../$${DESTDIR}
-OBJECTS_DIR = ../$${OBJECTS_DIR}
-MOC_DIR = ../$${MOC_DIR}
-RCC_DIR = ../$${RCC_DIR}
-UI_DIR = ../$${UI_DIR}
 
 HEADERS += \
     Test.hh \
@@ -47,5 +25,3 @@ HEADERS += \
 
 SOURCES += \
     testsuite.cc
-
-include(../vendor/fluid/fluid.pri)
