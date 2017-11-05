@@ -15,7 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 greaterThan(QT_MAJOR_VERSION, 4):greaterThan(QT_MINOR_VERSION, 7) {
     include(graphics/graphics.pri)
-    include(qml/visualscript/visualscript.pri)
     include(script/script.pri)
     include(system/system.pri)
     include(ui/ui.pri)

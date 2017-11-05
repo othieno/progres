@@ -23,4 +23,4 @@ SOURCES += \
     $$PWD/VisualScriptNode.cc \
     $$PWD/VisualScriptPlugin.cc
 
-RESOURCES += $$PWD/visualscript.qrc
+RESOURCES += $$PWD/visual.qrc
