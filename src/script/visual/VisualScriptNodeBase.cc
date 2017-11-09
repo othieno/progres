@@ -13,14 +13,14 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-#include "VisualScriptNode.hh"
+#include "VisualScriptNodeBase.hh"
 
-using visualscript::VisualScriptNode;
+using visualscript::VisualScriptNodeBase;
 
 
-VisualScriptNode::VisualScriptNode(QQuickItem* const parent) :
+VisualScriptNodeBase::VisualScriptNodeBase(QQuickItem* const parent) :
 QQuickItem(parent),
 type_(Type::Unspecified) {
     setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton);
@@ -28,13 +28,13 @@ type_(Type::Unspecified) {
 
 
 const QString&
-VisualScriptNode::getSource() const {
+VisualScriptNodeBase::getSource() const {
     return source_;
 }
 
 
 void
-VisualScriptNode::setSource(const QString& source) {
+VisualScriptNodeBase::setSource(const QString& source) {
     if (source_ != source) {
         source_ = source;
         emit sourceChanged(source_);
@@ -43,13 +43,13 @@ VisualScriptNode::setSource(const QString& source) {
 
 
 const QString&
-VisualScriptNode::getName() const {
+VisualScriptNodeBase::getName() const {
     return name_;
 }
 
 
 void
-VisualScriptNode::setName(const QString& name) {
+VisualScriptNodeBase::setName(const QString& name) {
     if (name_ != name) {
         name_ = name;
         emit nameChanged(name_);
@@ -58,7 +58,7 @@ VisualScriptNode::setName(const QString& name) {
 
 
 void
-VisualScriptNode::mousePressEvent(QMouseEvent* const event) {
+VisualScriptNodeBase::mousePressEvent(QMouseEvent* const event) {
     if (event->button() == Qt::LeftButton) {
         oldPosition_ = event->pos();
     }
@@ -66,7 +66,7 @@ VisualScriptNode::mousePressEvent(QMouseEvent* const event) {
 
 
 void
-VisualScriptNode::mouseMoveEvent(QMouseEvent* const event) {
+VisualScriptNodeBase::mouseMoveEvent(QMouseEvent* const event) {
     if (event->buttons() & Qt::LeftButton) {
         constexpr int DEADZONE = 3;
         auto newPosition = event->pos() - oldPosition_;

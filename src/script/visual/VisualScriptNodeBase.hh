@@ -13,10 +13,10 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef VISUALSCRIPT_NODE_HH
-#define VISUALSCRIPT_NODE_HH
+#ifndef VISUALSCRIPT_NODE_BASE_HH
+#define VISUALSCRIPT_NODE_BASE_HH
 
 #include <QQuickItem>
 
@@ -39,14 +39,14 @@ namespace nodetype {
 /**
  *
  */
-class VisualScriptNode : public QQuickItem {
+class VisualScriptNodeBase : public QQuickItem {
     Q_OBJECT
     Q_PROPERTY(QString source READ getSource WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged)
 public:
     using Type = nodetype::VisualScriptNodeType;
 
-    explicit VisualScriptNode(QQuickItem* const parent = nullptr);
+    explicit VisualScriptNodeBase(QQuickItem* const parent = nullptr);
 
     const QString& getSource() const;
     void setSource(const QString& source);
@@ -66,4 +66,4 @@ private:
 };
 } // namespace visualscript
 
-#endif // VISUALSCRIPT_NODE_HH
+#endif // VISUALSCRIPT_NODE_BASE_HH

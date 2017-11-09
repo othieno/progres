@@ -13,10 +13,10 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #include "VisualScriptPlugin.hh"
-#include "VisualScriptNode.hh"
+#include "VisualScriptNodeBase.hh"
 
 using visualscript::VisualScriptPlugin;
 
@@ -29,7 +29,7 @@ void
 VisualScriptPlugin::registerTypes(const char* uri) {
     Q_ASSERT(uri == QLatin1String("VisualScript"));
 
-    qmlRegisterType<VisualScriptNode>(uri, 1, 0, "VisualScriptNode");
+    qmlRegisterType<VisualScriptNodeBase>(uri, 1, 0, "VisualScriptNodeBase");
     qmlRegisterUncreatableMetaObject(
         nodetype::staticMetaObject, uri, 1, 0,
         "VisualScriptNodeType",
