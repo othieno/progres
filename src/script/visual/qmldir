@@ -1,3 +1,4 @@
 module VisualScript
 
+VisualScriptNode 1.0 VisualScriptNode.qml
 VisualScriptWorkspace 1.0 VisualScriptWorkspace.qml
