@@ -21,7 +21,8 @@ using visualscript::VisualScriptNode;
 
 
 VisualScriptNode::VisualScriptNode(QQuickItem* const parent) :
-QQuickItem(parent) {
+QQuickItem(parent),
+type_(Type::Unspecified) {
     setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton);
 }
 

@@ -23,6 +23,20 @@
 
 namespace visualscript {
 /**
+ * An enumeration of the available node types.
+ */
+namespace nodetype {
+    Q_NAMESPACE
+    enum class VisualScriptNodeType {
+        Unspecified,
+        Image,
+        Audio,
+        Video,
+        SourceCode,
+    };
+    Q_ENUMS(VisualScriptNodeType)
+}
+/**
  *
  */
 class VisualScriptNode : public QQuickItem {
@@ -30,6 +44,8 @@ class VisualScriptNode : public QQuickItem {
     Q_PROPERTY(QString source READ getSource WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged)
 public:
+    using Type = nodetype::VisualScriptNodeType;
+
     explicit VisualScriptNode(QQuickItem* const parent = nullptr);
 
     const QString& getSource() const;
@@ -46,6 +62,7 @@ private:
     QString source_;
     QString name_;
     QPointF oldPosition_;
+    Type type_;
 };
 } // namespace visualscript
 

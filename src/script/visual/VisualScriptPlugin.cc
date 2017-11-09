@@ -30,6 +30,11 @@ VisualScriptPlugin::registerTypes(const char* uri) {
     Q_ASSERT(uri == QLatin1String("VisualScript"));
 
     qmlRegisterType<VisualScriptNode>(uri, 1, 0, "VisualScriptNode");
+    qmlRegisterUncreatableMetaObject(
+        nodetype::staticMetaObject, uri, 1, 0,
+        "VisualScriptNodeType",
+        "Access to the VisualScriptNodeType enum only"
+    );
 }
 
 
