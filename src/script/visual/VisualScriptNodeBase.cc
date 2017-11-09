@@ -27,6 +27,18 @@ type_(Type::Unspecified) {
 }
 
 
+VisualScriptNodeBase::Type
+VisualScriptNodeBase::getType() const {
+    return type_;
+}
+
+
+int
+VisualScriptNodeBase::getTypeAsInt() const {
+    return static_cast<int>(type_);
+}
+
+
 const QString&
 VisualScriptNodeBase::getSource() const {
     return source_;

@@ -41,6 +41,7 @@ namespace nodetype {
  */
 class VisualScriptNodeBase : public QQuickItem {
     Q_OBJECT
+    Q_PROPERTY(int type READ getTypeAsInt NOTIFY typeChanged FINAL)
     Q_PROPERTY(QString source READ getSource WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged)
 public:
@@ -48,11 +49,15 @@ public:
 
     explicit VisualScriptNodeBase(QQuickItem* const parent = nullptr);
 
+    Type getType() const;
+    int getTypeAsInt() const;
+
     const QString& getSource() const;
     void setSource(const QString& source);
     const QString& getName() const;
     void setName(const QString& name);
 signals:
+    void typeChanged(const int newType);
     void sourceChanged(const QString& newSource);
     void nameChanged(const QString& newName);
 protected:
