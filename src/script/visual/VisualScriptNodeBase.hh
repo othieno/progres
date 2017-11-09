@@ -51,7 +51,6 @@ public:
 
     Type getType() const;
     int getTypeAsInt() const;
-
     const QString& getSource() const;
     void setSource(const QString& source);
     const QString& getName() const;
@@ -64,6 +63,8 @@ protected:
     void mousePressEvent(QMouseEvent* const event) override;
     void mouseMoveEvent(QMouseEvent* const event) override;
 private:
+    void loadSource();
+
     QString source_;
     QString name_;
     QPointF oldPosition_;

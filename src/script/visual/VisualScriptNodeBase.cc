@@ -24,6 +24,7 @@ VisualScriptNodeBase::VisualScriptNodeBase(QQuickItem* const parent) :
 QQuickItem(parent),
 type_(Type::Unspecified) {
     setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton);
+    QObject::connect(this, &VisualScriptNodeBase::sourceChanged, this, &VisualScriptNodeBase::loadSource);
 }
 
 
@@ -47,8 +48,9 @@ VisualScriptNodeBase::getSource() const {
 
 void
 VisualScriptNodeBase::setSource(const QString& source) {
-    if (source_ != source) {
-        source_ = source;
+    const auto trimmed = source.trimmed();
+    if (source_ != trimmed) {
+        source_ = trimmed;
         emit sourceChanged(source_);
     }
 }
@@ -100,4 +102,9 @@ VisualScriptNodeBase::mouseMoveEvent(QMouseEvent* const event) {
             setPosition(newPosition);
         }
     }
+}
+
+
+void
+VisualScriptNodeBase::loadSource() {
 }
