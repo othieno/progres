@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "Application.hh"
+#include <QDirIterator>
+#include <QDebug>
 
 using progres::Application;
 using progres::Error;
@@ -48,5 +50,18 @@ Application::initialize() {
 
     // TODO Initialize other compponents.
 
+#ifdef QT_DEBUG
+    listResourceFiles();
+#endif
     return Error::None;
+}
+
+
+void
+Application::listResourceFiles()
+{
+    QDirIterator it(":", QDirIterator::Subdirectories);
+    while (it.hasNext()) {
+        qInfo() << it.next();
+    }
 }

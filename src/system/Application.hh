@@ -61,6 +61,12 @@ public:
     Application& operator=(const Application&) = delete;
     Application& operator=(Application&&) = delete;
 private:
+    /**
+     * \fn void Application::listResourceFiles()
+     * \brief Lists all resource files associated with this application.
+     */
+    void listResourceFiles();
+
     GraphicalUserInterface gui_;
 };
 } // namespace progres
