@@ -19,52 +19,130 @@ import QtQuick 2.6
 import QtQuick.Controls 2.2
 import QtQuick.Controls.Material 2.2
 
-Rectangle {
-    id: workspace
+Item {
+	id: item
+	anchors.fill: parent
 
-    /**
-     * The component's private scope.
-     */
-    QtObject {
-        id: _
-        property string name
+	property string source: ""
+	readonly property alias name: project.name
 
-        /**
-         * Creates a VisualScriptNode with the specified source.
-         */
-        function createVisualScriptNode(source) {
-            return Qt.createQmlObject(
-                'import VisualScript 1.0; VisualScriptNode {source: "%1"}'.arg(source),
-                workspace
-            )
-        }
-    }
+	onSourceChanged: {
+		var path = source.trim()
+		if (path != project.path) {
+			project.close()
+			project.load(path)
+		}
+	}
 
-    readonly property alias name: _.name
+	QtObject {
+		id: project
 
-    anchors.fill: parent
-    color: Material.color(Material.Grey, Material.Shade900)
+		property string name: qsTr("Untitled")
+		property string path: ""
 
-    function initialize() {
-        _.name = qsTr("Untitled")
-    }
+		function load(path) {
+			this.path = path
+			console.info("Loading project from", this.path)
+		}
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: function(e) {
-        }
-    }
+		function save() {
+			console.info("Saving project to", this.path)
+		}
 
-    DropArea {
-        anchors.fill: parent
-        onDropped: function(e) {
-            if (e.hasUrls) {
-                var node = _.createVisualScriptNode(e.urls[0])
-                if (node != null) {
-                    node.x = e.x - (node.width * 0.5)
-                    node.y = e.y - (node.height * 0.5)
-                }
-            }
-        }
-    }
+		function close() {
+			if (this.path) {
+				console.info("Closing project", this.path)
+				this.name = qsTr("Untitled")
+				this.path = ""
+			}
+		}
+	}
+
+	Flickable {
+		id: flickable
+		anchors.fill: parent
+
+		clip: true
+		interactive: false
+		boundsBehavior: Flickable.StopAtBounds
+		contentWidth: workspace.width
+		contentHeight: workspace.height
+		contentX: (contentWidth - width) * 0.5
+		contentY: (contentHeight - height) * 0.5
+		ScrollBar.vertical: ScrollBar {}
+		ScrollBar.horizontal: ScrollBar {}
+
+		Rectangle {
+			id: workspace
+			anchors.centerIn: parent
+
+			property real scale: 4.0
+			readonly property real maxScale: 8.0
+
+			property real zoomLevel: 1.0
+			readonly property real maximumZoomLevel: 1.0
+
+			color: Material.background
+			clip: true
+			width: item.width * maximumZoomLevel
+			height: item.height * maximumZoomLevel
+			transform: Scale {
+				id: scaleTransform
+				xScale: workspace.scale
+				yScale: workspace.scale
+				origin.x: 0.5 * workspace.width
+				origin.y: 0.5 * workspace.height
+			}
+
+			MouseArea {
+				anchors.fill: parent
+				hoverEnabled: true
+				onWheel: {
+/*
+					var delta = (0.05 * wheel.angleDelta.y) / 120.0
+					workspace.scale = Math.min(Math.max(workspace.scale + delta, 1.0), workspace.maxScale)
+					//workspace.zoomLevel = Math.min(Math.max(workspace.zoomLevel + delta, 1.0), workspace.maximumZoomLevel)
+					scaleTransform.origin.x = mouseX
+					scaleTransform.origin.y = mouseY
+					return
+					workspace.scaleFactor += 0.05 * wheel.angleDelta.y / 120
+					workspace.scaleFactor = Math.min(Math.max(workspace.scaleFactor, min), max)
+*/
+				}
+			}
+
+			DropArea {
+				anchors.fill: parent
+				onDropped: function(e) {
+					if (e.hasUrls) {
+						workspace.createVisualScriptNode(e.urls[0], e.x, e.y)
+					}
+				}
+			}
+			/**
+			 * \fn createVisualScriptNode(source, x, y)
+			 * \brief Creates a VisualScriptNode with the specified source, centered at the given <x, y> coordinate.
+			 */
+			function createVisualScriptNode(source, x, y) {
+				var object = Qt.createQmlObject("import VisualScript 1.0; VisualScriptNode {}", workspace)
+				if (object) {
+					object.source = source || ""
+					object.x = x - (0.5 * object.width)
+					object.y = y - (0.5 * object.height)
+				}
+			}
+VisualScriptNode {
+	id: debugNode
+	anchors.centerIn: parent
+	width: 56
+	height: 32
+	Rectangle {
+		anchors.fill: parent
+		color: "#999"
+	}
+}
+		}
+	}
+
+	function initialize() {}
 }
