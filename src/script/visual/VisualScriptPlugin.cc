@@ -16,7 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #include "VisualScriptPlugin.hh"
-#include "VisualScriptNodeBase.hh"
+#include "VisualScriptNode.hh"
 
 using visualscript::VisualScriptPlugin;
 
@@ -29,7 +29,7 @@ void
 VisualScriptPlugin::registerTypes(const char* uri) {
     Q_ASSERT(uri == QLatin1String("VisualScript"));
 
-    VisualScriptNodeBase::registerType(uri);
+    VisualScriptNode::registerType(uri);
 }
 
 

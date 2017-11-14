@@ -15,39 +15,39 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-#include "VisualScriptNodeBase.hh"
+#include "VisualScriptNode.hh"
 
-using visualscript::VisualScriptNodeBase;
+using visualscript::VisualScriptNode;
 
 
-VisualScriptNodeBase::VisualScriptNodeBase(QQuickItem* const parent) :
+VisualScriptNode::VisualScriptNode(QQuickItem* const parent) :
 QQuickItem(parent),
 type_(Type::Unspecified) {
     setAcceptedMouseButtons(Qt::LeftButton | Qt::RightButton);
-    QObject::connect(this, &VisualScriptNodeBase::sourceChanged, this, &VisualScriptNodeBase::loadSource);
+    QObject::connect(this, &VisualScriptNode::sourceChanged, this, &VisualScriptNode::loadSource);
 }
 
 
-VisualScriptNodeBase::Type
-VisualScriptNodeBase::getType() const {
+VisualScriptNode::Type
+VisualScriptNode::getType() const {
     return type_;
 }
 
 
 int
-VisualScriptNodeBase::getTypeAsInt() const {
+VisualScriptNode::getTypeAsInt() const {
     return static_cast<int>(type_);
 }
 
 
 const QString&
-VisualScriptNodeBase::getSource() const {
+VisualScriptNode::getSource() const {
     return source_;
 }
 
 
 void
-VisualScriptNodeBase::setSource(const QString& source) {
+VisualScriptNode::setSource(const QString& source) {
     const auto trimmed = source.trimmed();
     if (source_ != trimmed) {
         source_ = trimmed;
@@ -57,13 +57,13 @@ VisualScriptNodeBase::setSource(const QString& source) {
 
 
 const QString&
-VisualScriptNodeBase::getName() const {
+VisualScriptNode::getName() const {
     return name_;
 }
 
 
 void
-VisualScriptNodeBase::setName(const QString& name) {
+VisualScriptNode::setName(const QString& name) {
     if (name_ != name) {
         name_ = name;
         emit nameChanged(name_);
@@ -72,7 +72,7 @@ VisualScriptNodeBase::setName(const QString& name) {
 
 
 void
-VisualScriptNodeBase::mousePressEvent(QMouseEvent* const event) {
+VisualScriptNode::mousePressEvent(QMouseEvent* const event) {
     if (event->button() == Qt::LeftButton) {
         oldPosition_ = event->pos();
     }
@@ -80,7 +80,7 @@ VisualScriptNodeBase::mousePressEvent(QMouseEvent* const event) {
 
 
 void
-VisualScriptNodeBase::mouseMoveEvent(QMouseEvent* const event) {
+VisualScriptNode::mouseMoveEvent(QMouseEvent* const event) {
     if (event->buttons() & Qt::LeftButton) {
         constexpr int DEADZONE = 3;
         auto newPosition = event->pos() - oldPosition_;
@@ -106,14 +106,15 @@ VisualScriptNodeBase::mouseMoveEvent(QMouseEvent* const event) {
 
 
 void
-VisualScriptNodeBase::loadSource() {
+VisualScriptNode::loadSource()
+{
 }
 
 
 void
-VisualScriptNodeBase::registerType(const char* const uri)
+VisualScriptNode::registerType(const char* const uri)
 {
-    qmlRegisterType<VisualScriptNodeBase>(uri, 1, 0, "VisualScriptNodeBase");
+    qmlRegisterType<VisualScriptNode>(uri, 1, 0, "VisualScriptNodeBase");
     qmlRegisterUncreatableMetaObject(
         nodetype::staticMetaObject, uri, 1, 0,
         "VisualScriptNodeType",
