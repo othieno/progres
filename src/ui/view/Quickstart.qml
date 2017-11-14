@@ -46,7 +46,7 @@ Pane {
 
         SubheadingLabel {
             Layout.alignment: Qt.AlignCenter
-            text: qsTr("Create procedural graphics.")
+            text: qsTr("Create and edit graphics in real-time.")
         }
 
         Button {
