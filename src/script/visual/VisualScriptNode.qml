@@ -19,4 +19,43 @@ import QtQuick 2.6
 import VisualScript 1.0
 
 VisualScriptNodeBase {
+    width: 48
+    height: 24
+
+    Rectangle {
+        id: preview
+        anchors.fill: parent
+        color: "#999"
+        Text {
+            anchors.centerIn: parent
+            font.pixelSize: 4
+            text: parent.state
+        }
+
+        states: [
+            State {
+                name: "Unspecified"
+                when: type == VisualScriptNodeType.Unspecified
+                PropertyChanges {}
+            },
+            State {
+                name: "Image"
+                when: type == VisualScriptNodeType.Image
+                PropertyChanges {}
+            },
+            State {
+                name: "Audio"
+                when: type == VisualScriptNodeType.Audio
+                PropertyChanges {}            },
+            State {
+                name: "Video"
+                when: type == VisualScriptNodeType.Video
+            },
+            State {
+                name: "Source Code"
+                when: type == VisualScriptNodeType.SourceCode
+                PropertyChanges {}
+            }
+        ]
+    }
 }

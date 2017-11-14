@@ -134,12 +134,6 @@ Item {
 VisualScriptNode {
 	id: debugNode
 	anchors.centerIn: parent
-	width: 56
-	height: 32
-	Rectangle {
-		anchors.fill: parent
-		color: "#999"
-	}
 }
 		}
 	}
