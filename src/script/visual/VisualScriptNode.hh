@@ -66,6 +66,7 @@ protected:
 private:
     void loadSource();
     static void registerType(const char* const uri);
+    static Type findNodeType(const QString& filename);
 
     QString source_;
     QString name_;

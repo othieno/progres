@@ -16,6 +16,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #include "VisualScriptNode.hh"
+#include <QHash>
+#include <QMimeDatabase>
 
 using visualscript::VisualScriptNode;
 
@@ -108,6 +110,11 @@ VisualScriptNode::mouseMoveEvent(QMouseEvent* const event) {
 void
 VisualScriptNode::loadSource()
 {
+    const Type newNodeType = findNodeType(source_);
+    if (newNodeType != type_) {
+        type_ = newNodeType;
+        emit typeChanged(static_cast<int>(type_));
+    }
 }
 
 
@@ -120,4 +127,25 @@ VisualScriptNode::registerType(const char* const uri)
         "VisualScriptNodeType",
         "Access to the VisualScriptNodeType enum only"
     );
+}
+
+
+VisualScriptNode::Type
+VisualScriptNode::findNodeType(const QString& filename)
+{
+    const QMimeDatabase db;
+    const QHash<QString, Type> mapping = {
+        {"image", Type::Image},
+        {"audio", Type::Audio},
+        {"video", Type::Video},
+        {"text",  Type::SourceCode},
+    };
+    const QMimeType mime = db.mimeTypeForFile(filename);
+    if (mime.isValid() && !mime.isDefault()) {
+        const QString category = mime.name().split("/")[0];
+        if (mapping.contains(category)) {
+            return mapping[category];
+        }
+    }
+    return Type::Unspecified;
 }
