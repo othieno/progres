@@ -108,3 +108,15 @@ VisualScriptNodeBase::mouseMoveEvent(QMouseEvent* const event) {
 void
 VisualScriptNodeBase::loadSource() {
 }
+
+
+void
+VisualScriptNodeBase::registerType(const char* const uri)
+{
+    qmlRegisterType<VisualScriptNodeBase>(uri, 1, 0, "VisualScriptNodeBase");
+    qmlRegisterUncreatableMetaObject(
+        nodetype::staticMetaObject, uri, 1, 0,
+        "VisualScriptNodeType",
+        "Access to the VisualScriptNodeType enum only"
+    );
+}

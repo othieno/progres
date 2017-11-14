@@ -44,6 +44,7 @@ class VisualScriptNodeBase : public QQuickItem {
     Q_PROPERTY(int type READ getTypeAsInt NOTIFY typeChanged FINAL)
     Q_PROPERTY(QString source READ getSource WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged)
+    friend class VisualScriptPlugin;
 public:
     using Type = nodetype::VisualScriptNodeType;
 
@@ -64,6 +65,7 @@ protected:
     void mouseMoveEvent(QMouseEvent* const event) override;
 private:
     void loadSource();
+    static void registerType(const char* const uri);
 
     QString source_;
     QString name_;
