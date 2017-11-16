@@ -22,20 +22,22 @@ using visualscript::VisualScript;
 
 
 VisualScript::VisualScript(QObject* const parent) :
-QQmlExtensionPlugin(parent){}
+QQmlExtensionPlugin(parent) {}
 
 
 void
-VisualScript::registerTypes(const char* uri) {
-    Q_ASSERT(uri == QLatin1String("VisualScript"));
+VisualScript::registerTypes(const char* uri)
+{
+    Q_ASSERT(uri == QLatin1String(VisualScript::URI));
 
     VisualScriptNode::registerType(uri);
 }
 
 
-static void
-registerTypes() {
-    VisualScriptPlugin visualScriptPlugin;
-    visualScriptPlugin.registerTypes("VisualScript");
+void
+VisualScript::initialize(QQmlEngine& engine)
+{
+    VisualScript plugin;
+    plugin.initializeEngine(&engine, VisualScript::URI);
+    plugin.registerTypes(VisualScript::URI);
 }
-Q_COREAPP_STARTUP_FUNCTION(registerTypes)

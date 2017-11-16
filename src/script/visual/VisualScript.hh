@@ -38,6 +38,12 @@ public:
      *
      */
     void registerTypes(const char* uri) override;
+    /**
+     *
+     */
+    static void initialize(QQmlEngine& engine);
+private:
+    static constexpr const char* const URI = "VisualScript";
 };
 } // namespace visualscript
 

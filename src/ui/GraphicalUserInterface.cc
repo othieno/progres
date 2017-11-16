@@ -13,11 +13,12 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #include "GraphicalUserInterface.hh"
 #include <QGuiApplication>
 #include <QQuickStyle>
+#include "VisualScript.hh"
 
 using progres::GraphicalUserInterface;
 using progres::Error;
@@ -34,6 +35,8 @@ Error
 GraphicalUserInterface::initialize() {
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QQuickStyle::setStyle("Material");
+
+    visualscript::VisualScript::initialize(qmlApplicationEngine_);
 
     qmlApplicationEngine_.addImportPath(QLatin1String("qrc:/"));
     qmlApplicationEngine_.load(QUrl("qrc:/view/main.qml"));

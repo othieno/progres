@@ -13,7 +13,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #ifndef PROGRES_GRAPHICAL_USER_INTERFACE_HH
 #define PROGRES_GRAPHICAL_USER_INTERFACE_HH
@@ -50,7 +50,7 @@ private:
      * \fn GraphicalUserInterface::GraphicalUserInterface(Application& application)
      * \brief Instantiates a GraphicalUserInterface object bound to the specified \a application instance.
      */
-    GraphicalUserInterface(Application&);
+    explicit GraphicalUserInterface(Application&);
     /**
      * \fn Error GraphicalUserInterface::initialize()
      * \brief Initializes the GraphicalUserInterface instance.
