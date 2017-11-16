@@ -1,4 +1,6 @@
 module VisualScript
 
+internal VisualScriptNodePreview VisualScriptNodePreview.qml
+
 VisualScriptNode 1.0 VisualScriptNode.qml
 VisualScriptWorkspace 1.0 VisualScriptWorkspace.qml
