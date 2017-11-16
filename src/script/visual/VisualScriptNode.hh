@@ -44,7 +44,7 @@ class VisualScriptNode : public QQuickItem {
     Q_PROPERTY(int type READ getTypeAsInt NOTIFY typeChanged FINAL)
     Q_PROPERTY(QString source READ getSource WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged)
-    friend class VisualScriptPlugin;
+    friend class VisualScript;
 public:
     using Type = nodetype::VisualScriptNodeType;
 

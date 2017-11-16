@@ -15,27 +15,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-#include "VisualScriptPlugin.hh"
-#include "VisualScriptNode.hh"
+#ifndef VISUALSCRIPT_HH
+#define VISUALSCRIPT_HH
 
-using visualscript::VisualScriptPlugin;
-
-
-VisualScriptPlugin::VisualScriptPlugin(QObject* const parent) :
-QQmlExtensionPlugin(parent){}
+#include <QQmlExtensionPlugin>
 
 
-void
-VisualScriptPlugin::registerTypes(const char* uri) {
-    Q_ASSERT(uri == QLatin1String("VisualScript"));
+namespace visualscript {
+/**
+ *
+ */
+class VisualScript : public QQmlExtensionPlugin {
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
+public:
+    explicit VisualScript(QObject* const parent = nullptr);
+    /**
+     *
+     */
+    //void initializeEngine(QQmlEngine* engine, const char* uri) override;
+    /**
+     *
+     */
+    void registerTypes(const char* uri) override;
+};
+} // namespace visualscript
 
-    VisualScriptNode::registerType(uri);
-}
-
-
-static void
-registerTypes() {
-    VisualScriptPlugin visualScriptPlugin;
-    visualScriptPlugin.registerTypes("VisualScript");
-}
-Q_COREAPP_STARTUP_FUNCTION(registerTypes)
+#endif // VISUALSCRIPT_HH
