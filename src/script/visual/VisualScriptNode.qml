@@ -15,12 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.6
+import QtQuick 2.7
 import VisualScript 1.0
 
 VisualScriptNodeBase {
-	width: 48
-	height: 24
+	property string name: qsTr("Untitled")
 
 	VisualScriptNodePreview {
 		id: preview

@@ -20,6 +20,46 @@
 #include <QMimeDatabase>
 
 using visualscript::VisualScriptNode;
+using visualscript::VisualScriptNodeBase;
+
+
+VisualScriptNodeBase::VisualScriptNodeBase(QQuickItem* const parent) :
+QQuickItem(parent)
+{}
+
+
+const QString&
+VisualScriptNodeBase::getSource() const
+{
+    return source_;
+}
+
+
+void
+VisualScriptNodeBase::setSource(const QString& newSource)
+{
+    const auto trimmedSource = newSource.trimmed();
+    if (source_ != trimmedSource) {
+        source_ = trimmedSource;
+        emit sourceChanged(source_);
+
+        static const QMimeDatabase db;
+        const QMimeType mimeType = db.mimeTypeForFile(source_);
+        if (mimeType.isValid() && !mimeType.isDefault()) {
+            const QString& mimeTypeName = mimeType.name();
+            if (sourceMimeType_ != mimeTypeName) {
+                sourceMimeType_ = mimeTypeName;
+                emit sourceMimeTypeChanged(sourceMimeType_);
+            }
+        }
+    }
+}
+
+
+const QString&
+VisualScriptNodeBase::getSourceMimeType() const {
+    return sourceMimeType_;
+}
 
 
 VisualScriptNode::VisualScriptNode(QQuickItem* const parent) :

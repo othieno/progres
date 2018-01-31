@@ -30,7 +30,7 @@ VisualScript::registerTypes(const char* uri)
 {
     Q_ASSERT(uri == QLatin1String(VisualScript::URI));
 
-    VisualScriptNode::registerType(uri);
+    qmlRegisterType<VisualScriptNodeBase>(uri, 1, 0, "VisualScriptNodeBase");
 }
 
 
