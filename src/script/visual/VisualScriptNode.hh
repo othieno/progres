@@ -43,57 +43,6 @@ private:
     QString source_;
     QString sourceMimeType_;
 };
-/**
- * An enumeration of the available node types.
- */
-namespace nodetype {
-    Q_NAMESPACE
-    enum class VisualScriptNodeType {
-        Unspecified,
-        Image,
-        Audio,
-        Video,
-        SourceCode,
-    };
-    Q_ENUMS(VisualScriptNodeType)
-}
-/**
- *
- */
-class VisualScriptNode : public QQuickItem {
-    Q_OBJECT
-    Q_PROPERTY(int type READ getTypeAsInt NOTIFY typeChanged FINAL)
-    Q_PROPERTY(QString source READ getSource WRITE setSource NOTIFY sourceChanged)
-    Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged)
-    friend class VisualScript;
-public:
-    using Type = nodetype::VisualScriptNodeType;
-
-    explicit VisualScriptNode(QQuickItem* const parent = nullptr);
-
-    Type getType() const;
-    int getTypeAsInt() const;
-    const QString& getSource() const;
-    void setSource(const QString& source);
-    const QString& getName() const;
-    void setName(const QString& name);
-signals:
-    void typeChanged(const int newType);
-    void sourceChanged(const QString& newSource);
-    void nameChanged(const QString& newName);
-protected:
-    void mousePressEvent(QMouseEvent* const event) override;
-    void mouseMoveEvent(QMouseEvent* const event) override;
-private:
-    void loadSource();
-    static void registerType(const char* const uri);
-    static Type findNodeType(const QString& filename);
-
-    QString source_;
-    QString name_;
-    QPointF oldPosition_;
-    Type type_;
-};
 } // namespace visualscript
 
 #endif // VISUALSCRIPT_NODE_HH
