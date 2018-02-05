@@ -37,7 +37,6 @@ ApplicationWindow {
         actions: [
             Action {
                 text: qsTr("Application Settings")
-                iconName: "action/settings"
                 toolTip: qsTr("Configure the application's settings")
                 onTriggered: pageStack.push("qrc:/view/settings/main.qml")
                 hoverAnimation: true
