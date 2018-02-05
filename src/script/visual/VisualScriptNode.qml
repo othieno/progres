@@ -21,7 +21,7 @@ import VisualScript 1.0
 VisualScriptNodeBase {
 	property string name: qsTr("Untitled")
 
-	VisualScriptNodePreview {
+	VisualScriptNodePreviewer {
 		id: preview
 	}
 }
