@@ -45,10 +45,18 @@ VisualScriptNodeBase::setSource(const QString& newSource)
         static const QMimeDatabase db;
         const QMimeType mimeType = db.mimeTypeForFile(source_);
         if (mimeType.isValid() && !mimeType.isDefault()) {
-            const QString& mimeTypeName = mimeType.name();
-            if (sourceMimeType_ != mimeTypeName) {
-                sourceMimeType_ = mimeTypeName;
-                emit sourceMimeTypeChanged(sourceMimeType_);
+            const QStringList name = mimeType.name().split("/");
+            const QString& category = name[0];
+            const QString& type = name[1];
+
+            if (sourceCategory_ != category) {
+                sourceCategory_ = category;
+                emit sourceCategoryChanged(sourceCategory_);
+            }
+
+            if (sourceType_ != type) {
+                sourceType_ = type;
+                emit sourceTypeChanged(sourceType_);
             }
         }
     }
@@ -56,6 +64,12 @@ VisualScriptNodeBase::setSource(const QString& newSource)
 
 
 const QString&
-VisualScriptNodeBase::getSourceMimeType() const {
-    return sourceMimeType_;
+VisualScriptNodeBase::getSourceCategory() const {
+    return sourceCategory_;
+}
+
+
+const QString&
+VisualScriptNodeBase::getSourceType() const {
+    return sourceType_;
 }

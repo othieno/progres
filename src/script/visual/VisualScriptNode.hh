@@ -28,20 +28,24 @@ namespace visualscript {
 class VisualScriptNodeBase : public QQuickItem {
     Q_OBJECT
     Q_PROPERTY(QString source READ getSource WRITE setSource NOTIFY sourceChanged FINAL)
-    Q_PROPERTY(QString sourceMimeType READ getSourceMimeType NOTIFY sourceMimeTypeChanged FINAL)
+    Q_PROPERTY(QString sourceCategory READ getSourceCategory NOTIFY sourceCategoryChanged FINAL)
+    Q_PROPERTY(QString sourceType READ getSourceType NOTIFY sourceTypeChanged FINAL)
     friend class VisualScript;
 public:
     explicit VisualScriptNodeBase(QQuickItem* const parent = nullptr);
 
     const QString& getSource() const;
     void setSource(const QString& source);
-    const QString& getSourceMimeType() const;
+    const QString& getSourceCategory() const;
+    const QString& getSourceType() const;
 signals:
     void sourceChanged(const QString& newSource);
-    void sourceMimeTypeChanged(const QString& newSourceMimeType);
+    void sourceCategoryChanged(const QString newSourceCategory);
+    void sourceTypeChanged(const QString& newSourceType);
 private:
     QString source_;
-    QString sourceMimeType_;
+    QString sourceCategory_;
+    QString sourceType_;
 };
 } // namespace visualscript
 
