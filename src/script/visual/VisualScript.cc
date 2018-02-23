@@ -17,6 +17,7 @@
  */
 #include "VisualScript.hh"
 #include "VisualScriptNode.hh"
+#include "VisualScriptWire.hh"
 
 using visualscript::VisualScript;
 
@@ -31,6 +32,8 @@ VisualScript::registerTypes(const char* uri)
     Q_ASSERT(uri == QLatin1String(VisualScript::URI));
 
     qmlRegisterType<VisualScriptNodeBase>(uri, 1, 0, "VisualScriptNodeBase");
+    qmlRegisterType<Wire>(uri, 1, 0, "VisualScriptWire");
+    qRegisterMetaType<Wire*>("Wire*");
 }
 
 

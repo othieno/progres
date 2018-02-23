@@ -37,7 +37,7 @@ public:
     /**
      *
      */
-    void registerTypes(const char* uri) override;
+    void registerTypes(const char* uri) Q_DECL_OVERRIDE;
     /**
      *
      */
