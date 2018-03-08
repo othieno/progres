@@ -98,7 +98,7 @@ Wire::getEndX() const
 void
 Wire::setEndX(const qreal endX)
 {
-	qreal& endX_ = start_.rx();
+	qreal& endX_ = end_.rx();
 	if (endX_ != endX) {
 		endX_ = endX;
 		emit endXChanged(endX_);
@@ -117,7 +117,7 @@ Wire::getEndY() const
 void
 Wire::setEndY(const qreal endY)
 {
-	qreal& endY_ = start_.ry();
+	qreal& endY_ = end_.ry();
 	if (endY_ != endY) {
 		endY_ = endY;
 		emit endYChanged(endY_);
@@ -201,9 +201,9 @@ void
 Wire::updateBezierCurve()
 {
 	const QPointF& P0 = start_;
-	const QPointF  Pn = end_;
+	const QPointF& Pn = end_;
 	const QPointF  P1 = QPointF(P0.x() + 32, P0.y()) * 3; // x3 to factor the bezier function below.
-	const QPointF& P2 = QPointF(Pn.x() - 32, Pn.y()) * 3;
+	const QPointF  P2 = QPointF(Pn.x() - 32, Pn.y()) * 3;
 
 	constexpr qreal N = 1.0 / qreal(GEOMETRY_VERTEX_COUNT - 1);
 	QSGGeometry::Point2D* const vertices = geometry_.vertexDataAsPoint2D();
