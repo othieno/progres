@@ -16,6 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #include "VisualScript.hh"
+#include "VisualScriptItem.hh"
 #include "VisualScriptNode.hh"
 #include "VisualScriptWire.hh"
 
@@ -30,6 +31,9 @@ void
 VisualScript::registerTypes(const char* uri)
 {
     Q_ASSERT(uri == QLatin1String(VisualScript::URI));
+
+    qmlRegisterType<Item>(uri, 1, 0, "VisualScriptItem");
+    qRegisterMetaType<Item*>("Item*");
 
     qmlRegisterType<VisualScriptNodeBase>(uri, 1, 0, "VisualScriptNodeBase");
     qmlRegisterType<Wire>(uri, 1, 0, "VisualScriptWire");
