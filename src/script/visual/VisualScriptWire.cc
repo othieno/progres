@@ -36,6 +36,7 @@ endpointChanged_(true),
 geometry_(QSGGeometry::defaultAttributes_Point2D(), GEOMETRY_VERTEX_COUNT),
 nodeDirtyState_(QSGNode::DirtyGeometry | QSGNode::DirtyMaterial)
 {
+	setFlag(QQuickItem::ItemHasContents);
 	geometry_.setDrawingMode(QSGGeometry::DrawLineStrip);
 }
 
