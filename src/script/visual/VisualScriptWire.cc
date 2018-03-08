@@ -200,21 +200,24 @@ Wire::updateEndpoint()
 void
 Wire::updateBezierCurve()
 {
+	// Calculates points for a cubic Bezier curve.
+	// https://en.wikipedia.org/wiki/B%C3%A9zier_curve#Cubic_B%C3%A9zier_curves
 	const QPointF& P0 = start_;
-	const QPointF& Pn = end_;
+	const QPointF& P3 = end_;
 	const QPointF  P1 = QPointF(P0.x() + 32, P0.y()) * 3; // x3 to factor the bezier function below.
-	const QPointF  P2 = QPointF(Pn.x() - 32, Pn.y()) * 3;
+	const QPointF  P2 = QPointF(P3.x() - 32, P3.y()) * 3;
 
 	constexpr qreal N = 1.0 / qreal(GEOMETRY_VERTEX_COUNT - 1);
+
 	QSGGeometry::Point2D* const vertices = geometry_.vertexDataAsPoint2D();
 	for (std::size_t i = 0; i < GEOMETRY_VERTEX_COUNT; ++i) {
-		const qreal x = i * N;
-		const qreal o = 1.0 - x;
+		const qreal t = i * N;
+		const qreal u = 1.0 - t;
 		const QPointF P =
-			(P0 * o * o * o) +
-			(P1 * o * o * x) +
-			(P2 * o * x * x) +
-			(Pn * x * x * x);
+			(u * u * u * P0) +
+			(u * u * t * P1) +
+			(u * t * t * P2) +
+			(t * t * t * P3);
 
 		vertices[i].set(P.x(), P.y());
 	}
