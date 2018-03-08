@@ -28,8 +28,8 @@ Wire(nullptr, QPointF(0, 0), QPointF(0, 0))
 {}
 
 
-Wire::Wire(QQuickItem* const parent, const QPointF& start, const QPointF& end) :
-QQuickItem(parent),
+Wire::Wire(Item* const parent, const QPointF& start, const QPointF& end) :
+Item(parent),
 start_(start),
 end_(end),
 endpointChanged_(true),
@@ -40,7 +40,7 @@ nodeDirtyState_(QSGNode::DirtyGeometry | QSGNode::DirtyMaterial)
 }
 
 
-Wire::Wire(QQuickItem* const parent, const qreal startX, const qreal startY, const qreal endX, const qreal endY) :
+Wire::Wire(Item* const parent, const qreal startX, const qreal startY, const qreal endX, const qreal endY) :
 Wire(parent, QPointF(startX, startY), QPointF(endX, endY))
 {}
 

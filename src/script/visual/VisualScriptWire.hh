@@ -18,7 +18,7 @@
 #ifndef VISUALSCRIPT_WIRE_HH
 #define VISUALSCRIPT_WIRE_HH
 
-#include <QQuickItem>
+#include "VisualScriptItem.hh"
 #include <QSGNode>
 #include <QSGGeometry>
 #include <QSGFlatColorMaterial>
@@ -28,7 +28,7 @@ namespace visualscript {
 /**
  * A Wire is a visual representation of a link between two points.
  */
-class Wire : public QQuickItem {
+class Wire : public Item {
 	Q_OBJECT
 	Q_PROPERTY(qreal startX READ getStartX WRITE setStartX NOTIFY startXChanged)
 	Q_PROPERTY(qreal startY READ getStartY WRITE setStartY NOTIFY startYChanged)
@@ -38,8 +38,8 @@ class Wire : public QQuickItem {
 	Q_PROPERTY(float thickness READ getThickness WRITE setThickness NOTIFY thicknessChanged)
 public:
 	Wire();
-	Wire(QQuickItem* const parent, const QPointF& start, const QPointF& end);
-	Wire(QQuickItem* const parent, const qreal startX, const qreal startY, const qreal endX, const qreal endY);
+	Wire(Item* const parent, const QPointF& start, const QPointF& end);
+	Wire(Item* const parent, const qreal startX, const qreal startY, const qreal endX, const qreal endY);
 	~Wire();
 
 	qreal getStartX() const;
