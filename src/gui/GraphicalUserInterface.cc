@@ -18,32 +18,23 @@
 #include "GraphicalUserInterface.hh"
 #include <QGuiApplication>
 #include <QQuickStyle>
-#include "VisualScript.hh"
 
 using progres::GraphicalUserInterface;
 using progres::Error;
 
 
 GraphicalUserInterface::GraphicalUserInterface(Application& application) :
-application_(application) {}
-
-
-GraphicalUserInterface::~GraphicalUserInterface() {}
+application_(application)
+{}
 
 
 Error
-GraphicalUserInterface::initialize() {
-    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QQuickStyle::setStyle("Material");
+GraphicalUserInterface::initialize()
+{
+	QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+	QQuickStyle::setStyle("Material");
 
-    visualscript::VisualScript::initialize(qmlApplicationEngine_);
+	qmlApplicationEngine_.load(QUrl("qrc:/gui/qml/main.qml"));
 
-    qmlApplicationEngine_.addImportPath(QLatin1String("qrc:/"));
-    qmlApplicationEngine_.load(QUrl("qrc:/view/main.qml"));
-
-    return Error::None;
+	return Error::None;
 }
-
-
-void
-GraphicalUserInterface::getWindow() {}

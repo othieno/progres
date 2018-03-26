@@ -16,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "Application.hh"
+#include "GraphicalUserInterface.hh"
 #include <QDirIterator>
 #include <QDebug>
 
@@ -25,43 +26,47 @@ using progres::Error;
 
 Application::Application(int& argc, char** argv) :
 QGuiApplication(argc, argv),
-gui_(*this) {
-    setApplicationName(APPLICATION_NAME);
-    setApplicationVersion(APPLICATION_VERSION);
+gui_(*this)
+{
+	setApplicationName(APPLICATION_NAME);
+	setApplicationVersion(APPLICATION_VERSION);
 }
 
 
-Application::~Application() {}
+Application::~Application()
+{}
 
 
 QString
-Application::getRepositoryURL() const {
-    return QString(APPLICATION_REPOSITORY);
+Application::getRepositoryURL() const
+{
+	return QString(APPLICATION_REPOSITORY);
 }
 
 
 Error
-Application::initialize() {
-    //const auto& arguments = QApplication::arguments();
-    Error error = gui_.initialize();
-    if (error != Error::None) {
-        return error;
-    }
+Application::initialize()
+{
+	//const auto& arguments = QApplication::arguments();
+	Error error = gui_.initialize();
+	if (error != Error::None) {
+		return error;
+	}
 
-    // TODO Initialize other compponents.
+	// TODO Initialize other compponents.
 
 #ifdef QT_DEBUG
-    listResourceFiles();
+	listResourceFiles();
 #endif
-    return Error::None;
+	return Error::None;
 }
 
 
 void
 Application::listResourceFiles()
 {
-    QDirIterator it(":", QDirIterator::Subdirectories);
-    while (it.hasNext()) {
-        qInfo() << it.next();
-    }
+	QDirIterator it(":", QDirIterator::Subdirectories);
+	while (it.hasNext()) {
+		qInfo() << it.next();
+	}
 }

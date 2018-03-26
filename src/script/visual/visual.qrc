@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/VisualScript">
-        <file>VisualScriptNode.qml</file>
-        <file>VisualScriptNodePreviewer.qml</file>
-        <file>VisualScriptWorkspace.qml</file>
-        <file>qmldir</file>
-    </qresource>
-</RCC>

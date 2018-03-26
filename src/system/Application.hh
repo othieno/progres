@@ -27,47 +27,47 @@ namespace progres {
  *
  *
  */
-class Application : public QGuiApplication {
-    Q_OBJECT
-    /**
-     * \property QString Application::repositoryURL
-     * \brief The URL to the application's source code repository.
-     */
-    Q_PROPERTY(QString repositoryURL READ getRepositoryURL CONSTANT)
+class Application : public QGuiApplication
+{
+	Q_OBJECT
+	/**
+	 * \property QString Application::repositoryURL
+	 * \brief The URL to the application's source code repository.
+	 */
+	Q_PROPERTY(QString repositoryURL READ getRepositoryURL CONSTANT)
 public:
-    /**
-     * \fn Application::Application(int& argc, char** argv)
-     * \brief Instantiates an Application object.
-     */
-    Application(int& argc, char** argv);
-    /**
-     * \fn Application::~Application()
-     * \brief Destroys the Application instance.
-     */
-    ~Application();
-    /**
-     * \fn Error Application::initialize()
-     * \brief Initializes the Application instance.
-     */
-    Error initialize();
-    /**
-     * \fn QString Application::getRepositoryURL() const
-     * \brief Returns the URL to the project's source code repository.
-     */
-    QString getRepositoryURL() const;
-
-    Application(const Application&) = delete;
-    Application(Application&&) = delete;
-    Application& operator=(const Application&) = delete;
-    Application& operator=(Application&&) = delete;
+	Application(const Application&) = delete;
+	Application(Application&&) = delete;
+	Application& operator=(const Application&) = delete;
+	Application& operator=(Application&&) = delete;
+	/**
+	 * \fn Application::Application(int& argc, char** argv)
+	 * \brief Instantiates an Application object.
+	 */
+	Application(int& argc, char** argv);
+	/**
+	 * \fn Application::~Application()
+	 * \brief Destroys the Application instance.
+	 */
+	~Application();
+	/**
+	 * \fn Error Application::initialize()
+	 * \brief Initializes the Application instance.
+	 */
+	Error initialize();
+	/**
+	 * \fn QString Application::getRepositoryURL() const
+	 * \brief Returns the URL to the project's source code repository.
+	 */
+	QString getRepositoryURL() const;
 private:
-    /**
-     * \fn void Application::listResourceFiles()
-     * \brief Lists all resource files associated with this application.
-     */
-    void listResourceFiles();
+	/**
+	 * \fn void Application::listResourceFiles()
+	 * \brief Lists all resource files associated with this application.
+	 */
+	void listResourceFiles();
 
-    GraphicalUserInterface gui_;
+	GraphicalUserInterface gui_;
 };
 } // namespace progres
 

@@ -6,4 +6,5 @@ Makefile
 # Ignore extraneous configuration files.
 *.sublime-*
 *.pro.user*
+*.qbs.user*
 .qmake*
