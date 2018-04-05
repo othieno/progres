@@ -52,17 +52,17 @@ Project {
 		name: "progres"
 		targetName: "progres"
 		version: project.version
-		qbs.buildVariant: "release"
-		cpp.cxxLanguageVersion: "c++14"
-		cpp.treatWarningsAsErrors: true
-		cpp.defines: [
-			'QT_DEPRECATED_WARNINGS',
-			'APPLICATION_NAME="' + project.name + '"',
-			'APPLICATION_VERSION="' + project.version + '"',
-			'APPLICATION_REPOSITORY="' + project.repository + '"',
-		]
 		cpp.cxxFlags: [
 			"-pedantic-errors",
+		]
+		cpp.cxxLanguageVersion: "c++14"
+		cpp.defines: [
+			'QT_DEPRECATED_WARNINGS',
+			'APPLICATION_NAME="' + project.shortName + '"',
+			'APPLICATION_ORGANIZATION_DOMAIN="' + project.organizationDomain + '"',
+			'APPLICATION_ORGANIZATION_NAME="' + project.organizationName + '"',
+			'APPLICATION_REPOSITORY="' + project.repository + '"',
+			'APPLICATION_VERSION="' + project.version + '"',
 		]
 		cpp.includePaths: [
 			"graphics/",
@@ -70,6 +70,9 @@ Project {
 			"script/",
 			"system/",
 		]
+		cpp.treatWarningsAsErrors: true
+		qbs.buildVariant: "release"
+
 		FileTagger {
 			patterns: "*.hh"
 			fileTags: "hpp"

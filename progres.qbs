@@ -18,11 +18,15 @@
 import qbs
 
 Project {
-	readonly property string repository: "https://github.com/othieno/progres"
-	readonly property string version: "0.0.0"
+	readonly property string fullName: "Procedural Graphics Editor Suite"
 	readonly property string minimumQtVersion: "5.10.0"
+	readonly property string organizationDomain: "othieno.org"
+	readonly property string organizationName: "othieno"
+	readonly property string repository: "https://github.com/othieno/progres"
+	readonly property string shortName: "PROGRES"
+	readonly property string version: "0.0.0"
 
-	name: "PROGRES"
+	name: "progres"
 	minimumQbsVersion: "1.10.0"
 	qbsSearchPaths: [
 		"vendor/fluid/qbs/shared",
