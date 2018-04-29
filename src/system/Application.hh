@@ -19,6 +19,7 @@
 #define PROGRES_SYSTEM_APPLICATION_HH
 
 #include <QGuiApplication>
+#include <QDateTime>
 #include "ApplicationSettings.hh"
 #include "GraphicalUserInterface.hh"
 
@@ -38,10 +39,20 @@ class Application : public QGuiApplication
 	 */
 	Q_PROPERTY(ApplicationSettings* settings READ getSettingsPtr NOTIFY settingsChanged FINAL)
 	/**
-	 * \property QString Application::repositoryURL
+	 * \property QDateTime Application::buildDate
+	 * \brief The time at the moment this application was built.
+	 */
+	Q_PROPERTY(QDateTime buildDate READ getBuildDate CONSTANT)
+	/**
+	 * \property QString Application::buildCommitHash
+	 * \brief The hash of the commit that the application was built from.
+	 */
+	Q_PROPERTY(QString buildCommitHash READ getBuildCommitHash CONSTANT)
+	/**
+	 * \property QString Application::repositoryUrl
 	 * \brief The URL to the application's source code repository.
 	 */
-	Q_PROPERTY(QString repositoryURL READ getRepositoryURL CONSTANT)
+	Q_PROPERTY(QString repositoryUrl READ getRepositoryUrl CONSTANT)
 public:
 	Application(const Application&) = delete;
 	Application(Application&&) = delete;
@@ -78,10 +89,20 @@ public:
 	 */
 	ApplicationSettings* getSettingsPtr();
 	/**
-	 * \fn QString Application::getRepositoryURL() const
+	 * \fn static QDateTime Application::getBuildDate()
+	 * \brief Returns the UNIX time at the moment this application was built.
+	 */
+	static QDateTime getBuildDate();
+	/**
+	 * \fn static QString Application::getBuildCommitHash()
+	 * \brief Returns the hash of the commit that the application was built from.
+	 */
+	static QString getBuildCommitHash();
+	/**
+	 * \fn static QString Application::getRepositoryUrl()
 	 * \brief Returns the URL to the project's source code repository.
 	 */
-	QString getRepositoryURL() const;
+	static QString getRepositoryUrl();
 private:
 	ApplicationSettings settings_;
 	ui::GraphicalUserInterface gui_;

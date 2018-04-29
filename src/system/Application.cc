@@ -17,8 +17,6 @@
  */
 #include "Application.hh"
 #include "GraphicalUserInterface.hh"
-#include <QDirIterator>
-#include <QDebug>
 
 using progres::system::Application;
 using progres::system::ApplicationSettings;
@@ -29,8 +27,10 @@ Application::Application(int& argc, char** argv) :
 QGuiApplication(argc, argv),
 gui_(*this)
 {
-	setApplicationName(APPLICATION_NAME);
-	setApplicationVersion(APPLICATION_VERSION);
+	setApplicationName(QStringLiteral(APPLICATION_NAME));
+	setApplicationVersion(QStringLiteral(APPLICATION_VERSION));
+	setOrganizationName(QStringLiteral(APPLICATION_ORGANIZATION_NAME));
+	setOrganizationDomain(QStringLiteral(APPLICATION_ORGANIZATION_DOMAIN));
 	connect(&settings_, &ApplicationSettings::valueChanged, this, &Application::settingsChanged);
 }
 
@@ -60,10 +60,24 @@ Application::getSettingsPtr()
 }
 
 
-QString
-Application::getRepositoryURL() const
+QDateTime
+Application::getBuildDate()
 {
-	return QString(APPLICATION_REPOSITORY);
+	return QDateTime::fromMSecsSinceEpoch(APPLICATION_BUILD_DATE);
+}
+
+
+QString
+Application::getBuildCommitHash()
+{
+	return QStringLiteral(APPLICATION_BUILD_COMMIT_HASH);
+}
+
+
+QString
+Application::getRepositoryUrl()
+{
+	return QStringLiteral(APPLICATION_REPOSITORY_URL);
 }
 
 
