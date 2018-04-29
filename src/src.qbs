@@ -23,7 +23,7 @@ Project {
 	qbsSearchPaths: ".qbs"
 
 	SubProject {
-		filePath: "gui/plugins/visualscript/visualscript.qbs"
+		filePath: "ui/plugins/visualscript/visualscript.qbs"
 		Properties {
 			qmlPluginInstallDir: qmlPath
 		}
@@ -68,10 +68,12 @@ Project {
 			'APPLICATION_VERSION="' + project.version + '"',
 		]
 		cpp.includePaths: [
-			"graphics/",
-			"gui/",
-			"script/",
+			"helpers/",
+			"slang/",
 			"system/",
+			"system/resource/",
+			"ui/",
+			"ui/imageproviders/",
 		]
 		cpp.treatWarningsAsErrors: true
 		qbs.buildVariant: "release"
@@ -84,13 +86,26 @@ Project {
 		files: "progres.cc"
 
 		Group {
-			name: "graphics"
-			prefix: "graphics/"
+			name: "helpers"
+			prefix: "helpers/"
+			files: ["**/*.cc", "**/*.hh"]
 		}
 
 		Group {
-			name: "gui"
-			prefix: "gui/"
+			name: "slang"
+			prefix: "slang/"
+			files: ["**/*.cc", "**/*.hh"]
+		}
+
+		Group {
+			name: "system"
+			prefix: "system/"
+			files: ["**/*.cc", "**/*.hh"]
+		}
+
+		Group {
+			name: "ui"
+			prefix: "ui/"
 
 			Group {
 				name: "Source"
@@ -109,17 +124,6 @@ Project {
 				fileTags: "qt.core.resource_data"
 				Qt.core.resourceSourceBase: product.sourceDirectory
 			}
-		}
-
-		Group {
-			name: "script"
-			prefix: "script/"
-		}
-
-		Group {
-			name: "system"
-			prefix: "system/"
-			files: ["**/*.cc", "**/*.hh"]
 		}
 
 		Group {
