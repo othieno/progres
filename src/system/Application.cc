@@ -70,26 +70,14 @@ Application::getRepositoryURL() const
 Error
 Application::initialize()
 {
-	//const auto& arguments = QApplication::arguments();
-	Error error = gui_.initialize();
-	if (error != Error::None) {
-		return error;
-	}
+	//const auto& arguments = QGuiApplication::arguments();
+	Error error;
 
 	// TODO Initialize other compponents.
 
-#ifdef QT_DEBUG
-	listResourceFiles();
-#endif
-	return Error::None;
-}
-
-
-void
-Application::listResourceFiles()
-{
-	QDirIterator it(":", QDirIterator::Subdirectories);
-	while (it.hasNext()) {
-		qInfo() << it.next();
+	error = gui_.initialize();
+	if (error != Error::None) {
+		return error;
 	}
+	return Error::None;
 }

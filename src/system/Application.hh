@@ -83,12 +83,6 @@ public:
 	 */
 	QString getRepositoryURL() const;
 private:
-	/**
-	 * \fn void Application::listResourceFiles()
-	 * \brief Lists all resource files associated with this application.
-	 */
-	void listResourceFiles();
-
 	ApplicationSettings settings_;
 	ui::GraphicalUserInterface gui_;
 signals:
