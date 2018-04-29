@@ -17,6 +17,7 @@
  */
 #include "GraphicalUserInterface.hh"
 #include "Application.hh"
+#include "ResourceImageProvider.hh"
 #include <QQuickStyle>
 #include <QQmlContext>
 
@@ -36,9 +37,13 @@ GraphicalUserInterface::initialize()
 	QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 	QQuickStyle::setStyle("Material");
 
+	addImageProvider("resource", new ResourceImageProvider(application_.getResourceManager()));
+
 	rootContext()->setContextProperty("application", &application_);
 
 	load(QUrl(QStringLiteral("qrc:/ui/qml/main.qml")));
+
+	trimComponentCache();
 
 	return Error::None;
 }
