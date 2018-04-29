@@ -36,7 +36,7 @@ namespace ui {
 /**
  *
  */
-class GraphicalUserInterface
+class GraphicalUserInterface : private QQmlApplicationEngine
 {
 	friend class system::Application;
 public:
@@ -62,7 +62,6 @@ private:
 	explicit GraphicalUserInterface(system::Application& application);
 
 	system::Application& application_;
-	QQmlApplicationEngine qmlApplicationEngine_;
 };
 } // namespace ui
 } // namespace progres

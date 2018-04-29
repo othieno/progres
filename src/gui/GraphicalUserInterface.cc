@@ -35,7 +35,7 @@ GraphicalUserInterface::initialize()
 	QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 	QQuickStyle::setStyle("Material");
 
-	qmlApplicationEngine_.load(QUrl("qrc:/gui/qml/main.qml"));
+	load(QUrl(QStringLiteral("qrc:/ui/qml/main.qml")));
 
 	return Error::None;
 }
