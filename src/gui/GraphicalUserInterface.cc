@@ -18,6 +18,7 @@
 #include "GraphicalUserInterface.hh"
 #include "Application.hh"
 #include <QQuickStyle>
+#include <QQmlContext>
 
 using progres::ui::GraphicalUserInterface;
 using progres::system::Application;
@@ -34,6 +35,8 @@ GraphicalUserInterface::initialize()
 {
 	QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 	QQuickStyle::setStyle("Material");
+
+	rootContext()->setContextProperty("application", &application_);
 
 	load(QUrl(QStringLiteral("qrc:/ui/qml/main.qml")));
 
