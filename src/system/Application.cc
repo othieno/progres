@@ -33,7 +33,6 @@ gui_(*this)
 	setApplicationVersion(QStringLiteral(APPLICATION_VERSION));
 	setOrganizationName(QStringLiteral(APPLICATION_ORGANIZATION_NAME));
 	setOrganizationDomain(QStringLiteral(APPLICATION_ORGANIZATION_DOMAIN));
-	connect(&settings_, &ApplicationSettings::valueChanged, this, &Application::settingsChanged);
 }
 
 
