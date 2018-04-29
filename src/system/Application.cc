@@ -20,11 +20,13 @@
 
 using progres::system::Application;
 using progres::system::ApplicationSettings;
+using progres::system::ResourceManager;
 using progres::system::Error;
 
 
 Application::Application(int& argc, char** argv) :
 QGuiApplication(argc, argv),
+resourceManager_(*this),
 gui_(*this)
 {
 	setApplicationName(QStringLiteral(APPLICATION_NAME));
@@ -57,6 +59,27 @@ ApplicationSettings*
 Application::getSettingsPtr()
 {
 	return &settings_;
+}
+
+
+ResourceManager&
+Application::getResourceManager()
+{
+	return resourceManager_;
+}
+
+
+const ResourceManager&
+Application::getResourceManager() const
+{
+	return resourceManager_;
+}
+
+
+ResourceManager*
+Application::getResourceManagerPtr()
+{
+	return &resourceManager_;
 }
 
 

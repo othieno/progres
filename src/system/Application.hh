@@ -22,6 +22,7 @@
 #include <QDateTime>
 #include "ApplicationSettings.hh"
 #include "GraphicalUserInterface.hh"
+#include "ResourceManager.hh"
 
 
 namespace progres {
@@ -38,6 +39,11 @@ class Application : public QGuiApplication
 	 * \brief The application's configuration.
 	 */
 	Q_PROPERTY(ApplicationSettings* settings READ getSettingsPtr NOTIFY settingsChanged FINAL)
+	/**
+	 * \property ResourceManager* Application::resources
+	 * \brief The application's resource manager.
+	 */
+	Q_PROPERTY(ResourceManager* resources READ getResourceManagerPtr FINAL)
 	/**
 	 * \property QDateTime Application::buildDate
 	 * \brief The time at the moment this application was built.
@@ -89,6 +95,21 @@ public:
 	 */
 	ApplicationSettings* getSettingsPtr();
 	/**
+	 * \fn ResourceManager& Application::getResourceManager()
+	 * \brief Returns a reference to the application's resource manager.
+	 */
+	ResourceManager& getResourceManager();
+	/**
+	 * \fn const ResourceManager& Application::getResourceManager() const
+	 * \brief Returns a const reference to the application's resource manager.
+	 */
+	const ResourceManager& getResourceManager() const;
+	/**
+	 * \fn ResourceManager* getResourceManagerPtr()
+	 * \brief Returns a pointer to the application's resource manager.
+	 */
+	ResourceManager* getResourceManagerPtr();
+	/**
 	 * \fn static QDateTime Application::getBuildDate()
 	 * \brief Returns the UNIX time at the moment this application was built.
 	 */
@@ -105,6 +126,7 @@ public:
 	static QString getRepositoryUrl();
 private:
 	ApplicationSettings settings_;
+	ResourceManager resourceManager_;
 	ui::GraphicalUserInterface gui_;
 signals:
 	/**
