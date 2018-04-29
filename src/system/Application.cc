@@ -21,6 +21,7 @@
 #include <QDebug>
 
 using progres::system::Application;
+using progres::system::ApplicationSettings;
 using progres::system::Error;
 
 
@@ -30,11 +31,33 @@ gui_(*this)
 {
 	setApplicationName(APPLICATION_NAME);
 	setApplicationVersion(APPLICATION_VERSION);
+	connect(&settings_, &ApplicationSettings::valueChanged, this, &Application::settingsChanged);
 }
 
 
 Application::~Application()
 {}
+
+
+ApplicationSettings&
+Application::getSettings()
+{
+	return settings_;
+}
+
+
+const ApplicationSettings&
+Application::getSettings() const
+{
+	return settings_;
+}
+
+
+ApplicationSettings*
+Application::getSettingsPtr()
+{
+	return &settings_;
+}
 
 
 QString

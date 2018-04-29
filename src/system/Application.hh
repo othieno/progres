@@ -19,6 +19,7 @@
 #define PROGRES_SYSTEM_APPLICATION_HH
 
 #include <QGuiApplication>
+#include "ApplicationSettings.hh"
 #include "GraphicalUserInterface.hh"
 
 
@@ -31,6 +32,11 @@ namespace system {
 class Application : public QGuiApplication
 {
 	Q_OBJECT
+	/**
+	 * \property ApplicationSettings Application::settings
+	 * \brief The application's configuration.
+	 */
+	Q_PROPERTY(ApplicationSettings* settings READ getSettingsPtr NOTIFY settingsChanged FINAL)
 	/**
 	 * \property QString Application::repositoryURL
 	 * \brief The URL to the application's source code repository.
@@ -57,6 +63,21 @@ public:
 	 */
 	Error initialize();
 	/**
+	 * \fn ApplicationSettings& Application::getSettings()
+	 * \brief Returns a reference to the application's settings.
+	 */
+	ApplicationSettings& getSettings();
+	/**
+	 * \fn const ApplicationSettings& Application::getSettings() const
+	 * \brief Returns a const-reference to the application's settings.
+	 */
+	const ApplicationSettings& getSettings() const;
+	/**
+	 * \fn ApplicationSettings* Application::getSettingsPtr()
+	 * \brief Returns a pointer to the application's settings.
+	 */
+	ApplicationSettings* getSettingsPtr();
+	/**
 	 * \fn QString Application::getRepositoryURL() const
 	 * \brief Returns the URL to the project's source code repository.
 	 */
@@ -68,7 +89,14 @@ private:
 	 */
 	void listResourceFiles();
 
+	ApplicationSettings settings_;
 	GraphicalUserInterface gui_;
+signals:
+	/**
+	 * \fn void Application::settingsChanged()
+	 * \brief A signal that is emitted when the application's settings change.
+	 */
+	void settingsChanged();
 };
 } // namespace system
 } // namespace progres
