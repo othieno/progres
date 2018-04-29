@@ -1,0 +1,9 @@
+module VisualScript.Controls
+plugin visualscriptcontrolsplugin
+classname VisualScriptControlsPlugin
+depends QtQuick.Controls 2.10
+
+Node 1.0 Node.qml
+Pin 1.0 Pin.qml
+Pinhole 1.0 Pinhole.qml
+WorkspaceView 1.0 WorkspaceView.qml
