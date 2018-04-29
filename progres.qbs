@@ -22,7 +22,7 @@ Project {
 	readonly property string minimumQtVersion: "5.10.0"
 	readonly property string organizationDomain: "othieno.org"
 	readonly property string organizationName: "othieno"
-	readonly property string repository: "https://github.com/othieno/progres"
+	readonly property string repositoryUrl: "https://github.com/othieno/progres"
 	readonly property string shortName: "PROGRES"
 	readonly property string version: "0.0.0"
 

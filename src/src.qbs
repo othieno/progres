@@ -18,7 +18,7 @@
 import qbs
 
 Project {
-	property string qmlPath: "qml"
+	property string qmlPath: "/qml"
 
 	qbsSearchPaths: ".qbs"
 
@@ -32,7 +32,8 @@ Project {
 	QtGuiApplication {
 		Depends {name: "lirideployment"}
 		Depends {name: "Fluid"}
-		Depends {name: "VisualScript"}
+		Depends {name: "visualscript"}
+		Depends {name: "vcs"; headerFileName: undefined}
 		Depends {
 			name: "Qt"
 			submodules: [
@@ -58,10 +59,12 @@ Project {
 		cpp.cxxLanguageVersion: "c++14"
 		cpp.defines: [
 			'QT_DEPRECATED_WARNINGS',
+			'APPLICATION_BUILD_DATE=' + Date.now(),
+			'APPLICATION_BUILD_COMMIT_HASH="' + vcs.repoState + '"',
 			'APPLICATION_NAME="' + project.shortName + '"',
 			'APPLICATION_ORGANIZATION_DOMAIN="' + project.organizationDomain + '"',
 			'APPLICATION_ORGANIZATION_NAME="' + project.organizationName + '"',
-			'APPLICATION_REPOSITORY="' + project.repository + '"',
+			'APPLICATION_REPOSITORY_URL="' + project.repositoryUrl + '"',
 			'APPLICATION_VERSION="' + project.version + '"',
 		]
 		cpp.includePaths: [

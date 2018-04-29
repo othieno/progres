@@ -22,7 +22,7 @@ import qbs.ModUtils
 import qbs.PathTools
 
 Module {
-	property string qmlPath
+	property path qmlPath
 
 	setupRunEnvironment: {
 		var env = Environment.currentEnv();
