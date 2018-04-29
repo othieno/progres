@@ -90,7 +90,7 @@ private:
 	void listResourceFiles();
 
 	ApplicationSettings settings_;
-	GraphicalUserInterface gui_;
+	ui::GraphicalUserInterface gui_;
 signals:
 	/**
 	 * \fn void Application::settingsChanged()

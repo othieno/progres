@@ -18,12 +18,16 @@
 #include "Application.hh"
 
 
-int main(int argc, char** argv) {
-    progres::Application application(argc, argv);
-    const auto error = application.initialize();
-    if (error != progres::Error::None) {
-        progres::printError(error);
-        return static_cast<int>(error);
-    }
-    return application.exec();
+int main(int argc, char** argv)
+{
+	using progres::system::Application;
+	using progres::system::Error;
+
+	Application application(argc, argv);
+	const auto error = application.initialize();
+	if (error != Error::None) {
+		progres::system::print(error);
+		return static_cast<int>(error);
+	}
+	return application.exec();
 }
