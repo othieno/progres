@@ -18,4 +18,7 @@
 #include "Error.hh"
 
 
-void progres::printError(const Error) {}
+void progres::system::print(const Error)
+{
+
+}

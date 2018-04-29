@@ -16,11 +16,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #include "GraphicalUserInterface.hh"
-#include <QGuiApplication>
+#include "Application.hh"
 #include <QQuickStyle>
 
 using progres::GraphicalUserInterface;
-using progres::Error;
+using progres::system::Application;
+using progres::system::Error;
 
 
 GraphicalUserInterface::GraphicalUserInterface(Application& application) :

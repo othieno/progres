@@ -15,14 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PROGRES_APPLICATION_HH
-#define PROGRES_APPLICATION_HH
+#ifndef PROGRES_SYSTEM_APPLICATION_HH
+#define PROGRES_SYSTEM_APPLICATION_HH
 
 #include <QGuiApplication>
 #include "GraphicalUserInterface.hh"
 
 
 namespace progres {
+namespace system {
 /**
  *
  *
@@ -69,6 +70,7 @@ private:
 
 	GraphicalUserInterface gui_;
 };
+} // namespace system
 } // namespace progres
 
-#endif // PROGRES_APPLICATION_HH
+#endif // PROGRES_SYSTEM_APPLICATION_HH

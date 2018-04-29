@@ -17,25 +17,27 @@
  */
 /**
  */
-#ifndef PROGRES_ERROR_HH
-#define PROGRES_ERROR_HH
+#ifndef PROGRES_SYSTEM_ERROR_HH
+#define PROGRES_SYSTEM_ERROR_HH
 
 
 namespace progres {
+namespace system {
 /**
  * \file
  * \enum Error
  * \brief An enumeration of available system errors.
  */
 enum class Error : int {
-    None,
+	None,
 };
 
 /**
- * \fn void printError(const Error error)
+ * \fn void print(const Error error)
  * \brief Prints the specified \a error as a human-readable message.
  */
-void printError(const Error error);
+void print(const Error error);
+} // namespace system
 } // namespace progres
 
-#endif // PROGRES_ERROR_HH
+#endif // PROGRES_SYSTEM_ERROR_HH

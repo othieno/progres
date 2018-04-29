@@ -23,26 +23,29 @@
 
 
 namespace progres {
+namespace system {
 /**
  * \see system/Application.hh.
  */
 class Application;
+} // namespace system
+} // namespace progres
 /**
  *
  */
 class GraphicalUserInterface
 {
-	friend class Application;
+	friend class system::Application;
 public:
 	GraphicalUserInterface(const GraphicalUserInterface&) = delete;
 	GraphicalUserInterface(GraphicalUserInterface&&) = delete;
 	GraphicalUserInterface& operator=(const GraphicalUserInterface&) = delete;
 	GraphicalUserInterface& operator=(GraphicalUserInterface&&) = delete;
 	/**
-	 * \fn Error GraphicalUserInterface::initialize()
+	 * \fn system::Error GraphicalUserInterface::initialize()
 	 * \brief Initializes this GraphicalUserInterface instance.
 	 */
-	Error initialize();
+	system::Error initialize();
 	/**
 	 * \fn void GraphicalUserInterface::getWindow()
 	 * \brief Returns the application's window instance.
@@ -50,12 +53,12 @@ public:
 	// void getWindow();
 private:
 	/**
-	 * \fn GraphicalUserInterface::GraphicalUserInterface(Application& application)
+	 * \fn explicit GraphicalUserInterface::GraphicalUserInterface(system::Application& application)
 	 * \brief Instantiates a GraphicalUserInterface object bound to the specified \a application instance.
 	 */
-	GraphicalUserInterface(Application& application);
+	explicit GraphicalUserInterface(system::Application& application);
 
-	Application& application_;
+	system::Application& application_;
 	QQmlApplicationEngine qmlApplicationEngine_;
 };
 } // namespace progres

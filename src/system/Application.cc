@@ -20,8 +20,8 @@
 #include <QDirIterator>
 #include <QDebug>
 
-using progres::Application;
-using progres::Error;
+using progres::system::Application;
+using progres::system::Error;
 
 
 Application::Application(int& argc, char** argv) :
