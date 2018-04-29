@@ -19,7 +19,7 @@
 #include "Application.hh"
 #include <QQuickStyle>
 
-using progres::GraphicalUserInterface;
+using progres::ui::GraphicalUserInterface;
 using progres::system::Application;
 using progres::system::Error;
 

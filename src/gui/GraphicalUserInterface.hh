@@ -15,8 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PROGRES_GRAPHICAL_USER_INTERFACE_HH
-#define PROGRES_GRAPHICAL_USER_INTERFACE_HH
+#ifndef PROGRES_UI_GRAPHICALUSERINTERFACE_HH
+#define PROGRES_UI_GRAPHICALUSERINTERFACE_HH
 
 #include <QQmlApplicationEngine>
 #include "Error.hh"
@@ -30,6 +30,9 @@ namespace system {
 class Application;
 } // namespace system
 } // namespace progres
+
+namespace progres {
+namespace ui {
 /**
  *
  */
@@ -61,6 +64,7 @@ private:
 	system::Application& application_;
 	QQmlApplicationEngine qmlApplicationEngine_;
 };
+} // namespace ui
 } // namespace progres
 
-#endif // PROGRES_GRAPHICAL_USER_INTERFACE_HH
+#endif // PROGRES_UI_GRAPHICALUSERINTERFACE_HH
