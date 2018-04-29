@@ -28,7 +28,8 @@ namespace system {
  * \enum Error
  * \brief An enumeration of available system errors.
  */
-enum class Error : int {
+enum class Error : int
+{
 	None,
 };
 

@@ -38,7 +38,7 @@ class Application : public QGuiApplication
 	 * \property ApplicationSettings Application::settings
 	 * \brief The application's configuration.
 	 */
-	Q_PROPERTY(ApplicationSettings* settings READ getSettingsPtr NOTIFY settingsChanged FINAL)
+	Q_PROPERTY(ApplicationSettings* settings READ getSettingsPtr FINAL)
 	/**
 	 * \property ResourceManager* Application::resources
 	 * \brief The application's resource manager.
@@ -128,12 +128,6 @@ private:
 	ApplicationSettings settings_;
 	ResourceManager resourceManager_;
 	ui::GraphicalUserInterface gui_;
-signals:
-	/**
-	 * \fn void Application::settingsChanged()
-	 * \brief A signal that is emitted when the application's settings change.
-	 */
-	void settingsChanged();
 };
 } // namespace system
 } // namespace progres
