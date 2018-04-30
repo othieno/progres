@@ -20,18 +20,19 @@ import QtQuick.Window 2.2
 import QtQuick.Controls.Material 2.2
 import Fluid.Controls 1.0 as FluidControls
 import "Pages" as Pages
+import "Pages/private" as PagesPrivate
 
 FluidControls.ApplicationWindow {
-	readonly property FluidControls.Page currentPage: pageStack.currentItem
+	readonly property PagesPrivate.Page currentPage: pageStack.currentItem
 
 	Material.theme: Material.Light
 	Material.primary: Material.color(Material.Blue, Material.Shade500)
 	Material.background: Material.color(Material.Grey, Material.Shade300)
 	Material.accent: Material.color(Material.LightBlue, Material.ShadeA700)
+	appBar.visible: currentPage.showAppBar
 	visible: true
 	visibility: Window.Maximized
-	appBar.visible: (currentPage && currentPage.actions.length > 0) || pageStack.depth > 0
-	initialPage: Pages.Workspace {}
+	initialPage: Pages.Initial {}
 	title: {
 		if (currentPage && currentPage.title) {
 			return "%1 - Procedural Graphics Editor Suite".arg(currentPage.title);
