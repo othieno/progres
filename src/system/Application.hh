@@ -90,11 +90,6 @@ public:
 	 */
 	const ApplicationSettings& getSettings() const;
 	/**
-	 * \fn ApplicationSettings* Application::getSettingsPtr()
-	 * \brief Returns a pointer to the application's settings.
-	 */
-	ApplicationSettings* getSettingsPtr();
-	/**
 	 * \fn ResourceManager& Application::getResourceManager()
 	 * \brief Returns a reference to the application's resource manager.
 	 */
@@ -104,11 +99,6 @@ public:
 	 * \brief Returns a const reference to the application's resource manager.
 	 */
 	const ResourceManager& getResourceManager() const;
-	/**
-	 * \fn ResourceManager* getResourceManagerPtr()
-	 * \brief Returns a pointer to the application's resource manager.
-	 */
-	ResourceManager* getResourceManagerPtr();
 	/**
 	 * \fn static QDateTime Application::getBuildDate()
 	 * \brief Returns the UNIX time at the moment this application was built.
@@ -125,6 +115,21 @@ public:
 	 */
 	static QString getRepositoryUrl();
 private:
+	/**
+	 * \fn ApplicationSettings* Application::getSettingsPtr()
+	 * \brief Returns a pointer to the application's settings.
+	 * This member function is required to expose the ApplicationSettings
+	 * instance to the QML context.
+	 */
+	ApplicationSettings* getSettingsPtr();
+	/**
+	 * \fn ResourceManager* getResourceManagerPtr()
+	 * \brief Returns a pointer to the application's resource manager.
+	 * This member function is required to expose the ResourceManager instance
+	 * to the QML context.
+	 */
+	ResourceManager* getResourceManagerPtr();
+
 	ApplicationSettings settings_;
 	ResourceManager resourceManager_;
 	ui::GraphicalUserInterface gui_;
