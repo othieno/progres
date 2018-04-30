@@ -1,0 +1,10 @@
+singleton ReusablePin 1.0 ReusablePin.qml
+singleton ReusableWire 1.0 ReusableWire.qml
+
+Carousel Carousel.qml
+FileNode FileNode.qml
+FunctionCallNode FunctionCallNode.qml
+Pinhole Pinhole.qml
+RoundButton RoundButton.qml
+Wire Wire.qml
+WorkspaceView WorkspaceView.qml
