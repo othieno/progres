@@ -68,8 +68,17 @@ Private.Page {
 
 	UiControls.WorkspaceView {
 		id: workspaceView
-		anchors.fill: parent
+		anchors {
+			top: parent.top
+			left: parent.left
+			right: parent.right
+			bottom: snackbar.top
+		}
 		enabled: active && !settingsLoader.active
+	}
+
+	UiControls.Snackbar {
+		id: snackbar
 	}
 
 	Loader {

@@ -5,6 +5,7 @@ Carousel Carousel.qml
 FileNode FileNode.qml
 FunctionCallNode FunctionCallNode.qml
 Pinhole Pinhole.qml
+Snackbar Snackbar.qml
 RoundButton RoundButton.qml
 Wire Wire.qml
 WorkspaceView WorkspaceView.qml
