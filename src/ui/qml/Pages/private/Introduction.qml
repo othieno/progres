@@ -34,7 +34,7 @@ Item {
 
 		FontLoader {
 			id: fontLoader
-			source: "qrc:/gui/assets/fonts/Montserrat-ExtraBold.ttf"
+			source: "qrc:/ui/assets/fonts/Montserrat-ExtraBold.ttf"
 		}
 
 		Text {
