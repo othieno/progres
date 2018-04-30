@@ -22,19 +22,29 @@ import qbs.ModUtils
 import qbs.PathTools
 
 Module {
-	property path qmlPath
+	property path qmlImportPath
 
 	setupRunEnvironment: {
-		var env = Environment.currentEnv();
+		var environment = Environment.currentEnv();
 
-		env["QML2_IMPORT_PATH"] = PathTools.prependOrSetPath([
-			FileInfo.joinPaths(qbs.installRoot, qbs.installPrefix, qmlPath)
-		].join(qbs.pathListSeparator), env["QML2_IMPORT_PATH"], qbs.pathListSeparator);
+		environment["QML2_IMPORT_PATH"] = PathTools.prependOrSetPath(
+			FileInfo.joinPaths(
+				product.qbs.installRoot,
+				product.qbs.installPrefix,
+				product.PROGRES.runtime.qmlImportPath
+			),
+			environment["QML2_IMPORT_PATH"],
+			product.qbs.pathListSeparator
+		);
 
-		for (var i in env) {
-			var v = new ModUtils.EnvironmentVariable(i, qbs.pathListSeparator, qbs.hostOS.contains("windows"));
-			v.value = env[i];
-			v.set();
+		for (var key in environment) {
+			var variable = new ModUtils.EnvironmentVariable(
+				key,
+				product.qbs.pathListSeparator,
+				product.qbs.hostOS.contains("windows")
+			);
+			variable.value = environment[key];
+			variable.set();
 		}
 	}
 }

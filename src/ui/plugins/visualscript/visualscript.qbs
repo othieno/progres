@@ -22,7 +22,7 @@ Project {
 	property string qmlPluginInstallDir: "qml"
 
 	qbsSearchPaths: ".qbs"
-	minimumQbsVersion: "1.10.0"
+	minimumQbsVersion: "1.11.0"
 	references: [
 		"imports/imports.qbs",
 	]

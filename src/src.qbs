@@ -18,7 +18,7 @@
 import qbs
 
 Project {
-	property string qmlPath: "/qml"
+	property path qmlPath: "/qml"
 
 	qbsSearchPaths: ".qbs"
 
@@ -32,7 +32,7 @@ Project {
 	QtGuiApplication {
 		Depends {name: "lirideployment"}
 		Depends {name: "Fluid"}
-		Depends {name: "visualscript"}
+		Depends {name: "VisualScript"}
 		Depends {name: "vcs"; headerFileName: undefined}
 		Depends {
 			name: "Qt"
@@ -48,7 +48,7 @@ Project {
 				"runtime",
 			]
 		}
-		PROGRES.runtime.qmlPath: project.qmlPath
+		PROGRES.runtime.qmlImportPath: project.qmlPath
 
 		name: "progres"
 		targetName: "progres"

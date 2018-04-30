@@ -19,7 +19,7 @@ import qbs
 
 Project {
 	name: "Vendor"
-	minimumQbsVersion: "1.10.0"
+	minimumQbsVersion: "1.11.0"
 
 	SubProject {
 		filePath: "fluid/fluid.qbs"
@@ -35,6 +35,8 @@ Project {
 		Depends {name: "fluidcontrolsplugin"}
 		Depends {name: "fluidcontrolsprivateplugin"}
 		Depends {name: "fluidcoreplugin"}
+		Depends {name: "fluideffectsplugin"}
+		Depends {name: "fluidlayoutsplugin"}
 		Depends {name: "fluidtemplatesplugin"}
 	}
 }

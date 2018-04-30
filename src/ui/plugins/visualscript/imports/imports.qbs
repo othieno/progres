@@ -23,7 +23,7 @@ Project {
 	]
 
 	Product {
-		name: "visualscript"
+		name: "VisualScript"
 		Depends {name: "visualscriptplugin"}
 		Depends {name: "visualscriptcontrolsplugin"}
 	}

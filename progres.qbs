@@ -27,7 +27,7 @@ Project {
 	readonly property string version: "0.0.0"
 
 	name: "progres"
-	minimumQbsVersion: "1.10.0"
+	minimumQbsVersion: "1.11.0"
 	qbsSearchPaths: [
 		"vendor/fluid/qbs/shared",
 	]
