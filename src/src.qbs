@@ -68,7 +68,7 @@ Project {
 			'APPLICATION_VERSION="' + project.version + '"',
 		]
 		cpp.includePaths: [
-			"helpers/",
+			"io/",
 			"slang/",
 			"system/",
 			"system/resource/",
@@ -86,8 +86,8 @@ Project {
 		files: "progres.cc"
 
 		Group {
-			name: "helpers"
-			prefix: "helpers/"
+			name: "io"
+			prefix: "io/"
 			files: ["**/*.cc", "**/*.hh"]
 		}
 
