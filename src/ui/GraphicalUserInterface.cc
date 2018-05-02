@@ -37,13 +37,51 @@ GraphicalUserInterface::initialize()
 	QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 	QQuickStyle::setStyle("Material");
 
-	addImageProvider("resource", new ResourceImageProvider(application_.getResourceManager()));
-
-	rootContext()->setContextProperty("application", &application_);
+	Error (GraphicalUserInterface::* const setups[])() = {
+		&GraphicalUserInterface::setupContext,
+		&GraphicalUserInterface::setupImageProviders,
+		&GraphicalUserInterface::setupServices,
+		&GraphicalUserInterface::setupTypes,
+	};
+	for (auto setup : setups) {
+		const Error error = (this->*setup)();
+		if (error != Error::None) {
+			return error;
+		}
+	}
 
 	load(QUrl(QStringLiteral("qrc:/ui/qml/main.qml")));
-
 	trimComponentCache();
+
+	return Error::None;
+}
+
+
+Error
+GraphicalUserInterface::setupImageProviders()
+{
+	addImageProvider("resource", new ResourceImageProvider(application_.getResourceManager()));
+	return Error::None;
+}
+
+
+Error
+GraphicalUserInterface::setupContext()
+{
+	QQmlContext* const context = rootContext();
+	if (context != nullptr) {
+		context->setContextProperty("application", &application_);
+
+		return Error::None;
+	}
+	return Error::NoQmlContext;
+}
+
+
+Error
+GraphicalUserInterface::setupTypes()
+{
+	qmlRegisterUncreatableType<io::File>("File", 1, 0, "File", "Cannot instantiate 'File' class.");
 
 	return Error::None;
 }

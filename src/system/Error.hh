@@ -30,7 +30,8 @@ namespace system {
  */
 enum class Error : int
 {
-	None,
+	NoQmlContext,
+	None
 };
 
 /**

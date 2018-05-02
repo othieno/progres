@@ -60,7 +60,21 @@ private:
 	 * \brief Instantiates a GraphicalUserInterface object bound to the specified \a application instance.
 	 */
 	explicit GraphicalUserInterface(system::Application& application);
-
+	/**
+	 *
+	 */
+	system::Error setupImageProviders();
+	/**
+	 *
+	 */
+	system::Error setupContext();
+	/**
+	 *
+	 */
+	system::Error setupTypes();
+	/**
+	 * \brief A reference to the Application that this user interface is bound to.
+	 */
 	system::Application& application_;
 };
 } // namespace ui
