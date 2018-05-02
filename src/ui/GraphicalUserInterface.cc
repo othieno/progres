@@ -18,6 +18,7 @@
 #include "GraphicalUserInterface.hh"
 #include "Application.hh"
 #include "ResourceImageProvider.hh"
+#include "FileInfo.hh"
 #include <QQuickStyle>
 #include <QQmlContext>
 
@@ -83,5 +84,15 @@ GraphicalUserInterface::setupTypes()
 {
 	qmlRegisterUncreatableType<io::File>("File", 1, 0, "File", "Cannot instantiate 'File' class.");
 
+	return Error::None;
+}
+
+
+Error
+GraphicalUserInterface::setupServices()
+{
+	qmlRegisterSingletonType<FileInfo>("Service.FileInfo", 1, 0, "FileInfo", [](QQmlEngine*, QJSEngine*) -> QObject* {
+		return new FileInfo;
+	});
 	return Error::None;
 }

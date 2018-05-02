@@ -73,6 +73,10 @@ private:
 	 */
 	system::Error setupTypes();
 	/**
+	 *
+	 */
+	system::Error setupServices();
+	/**
 	 * \brief A reference to the Application that this user interface is bound to.
 	 */
 	system::Application& application_;

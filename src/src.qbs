@@ -74,6 +74,7 @@ Project {
 			"system/resource/",
 			"ui/",
 			"ui/imageproviders/",
+			"ui/services/",
 		]
 		cpp.treatWarningsAsErrors: true
 		qbs.buildVariant: "release"
